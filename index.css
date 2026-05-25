@@ -1455,7 +1455,8 @@ a.contact-detail-card:hover {
     /* Slider Content */
     .hero-slider-wrapper {
         height: 420px;
-        margin-top: 90px;
+        margin-top: 130px; /* Space between header and slider */
+        margin-bottom: 40px;
     }
     .slide {
         padding: 0 30px;
@@ -1466,6 +1467,12 @@ a.contact-detail-card:hover {
     .slide-description {
         font-size: 0.95rem;
     }
+    .slider-btn {
+        width: 40px;
+        height: 40px;
+    }
+    .slider-btn.prev { left: 12px; }
+    .slider-btn.next { right: 12px; }
     
     /* Services View Detail grids */
     .service-detail-grid {
@@ -1500,12 +1507,22 @@ a.contact-detail-card:hover {
     /* Slider Content */
     .hero-slider-wrapper {
         height: 380px;
+        margin-top: 120px; /* Space between header and slider */
+        margin-bottom: 30px;
     }
     .slide-title {
         font-size: 1.65rem;
     }
     .slider-btn {
-        display: none; /* Hide arrows on small mobile, rely on swipe/dots */
+        display: flex; /* Keep visible on mobile! */
+        width: 36px;
+        height: 36px;
+    }
+    .slider-btn.prev { left: 8px; }
+    .slider-btn.next { right: 8px; }
+    .slider-btn svg {
+        width: 18px;
+        height: 18px;
     }
     
     /* Header brand */
