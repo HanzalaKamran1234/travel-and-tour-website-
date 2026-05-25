@@ -364,26 +364,20 @@
                         <div class="home-contact-form-box animate-on-scroll">
                             <div class="hc-form-inner">
                                 <div class="hc-form-group">
-                                    <label class="hc-label" for="hc-name">Full Name</label>
+                                    <label class="hc-label" for="hc-name">Name</label>
                                     <input type="text" id="hc-name" class="hc-input" placeholder="e.g. Muhammad Ali" autocomplete="name">
                                 </div>
                                 <div class="hc-form-group">
-                                    <label class="hc-label" for="hc-phone">Phone / WhatsApp Number</label>
+                                    <label class="hc-label" for="hc-passport">Passport No</label>
+                                    <input type="text" id="hc-passport" class="hc-input" placeholder="Enter passport number">
+                                </div>
+                                <div class="hc-form-group">
+                                    <label class="hc-label" for="hc-email">Email Address</label>
+                                    <input type="email" id="hc-email" class="hc-input" placeholder="e.g. ali@example.com" autocomplete="email">
+                                </div>
+                                <div class="hc-form-group">
+                                    <label class="hc-label" for="hc-phone">Contact No</label>
                                     <input type="tel" id="hc-phone" class="hc-input" placeholder="e.g. 03XX XXXXXXX" autocomplete="tel">
-                                </div>
-                                <div class="hc-form-group">
-                                    <label class="hc-label" for="hc-service">Service Required</label>
-                                    <select id="hc-service" class="hc-input hc-select">
-                                        <option value="">Select a Service</option>
-                                        <option value="Tasheer Saudi Visa Registration">Tasheer Saudi Visa Registration</option>
-                                        <option value="GAMCA / Wafid Medical Slip">GAMCA / Wafid Medical Slip</option>
-                                        <option value="NAVTTC Skills Verification">NAVTTC Skills Verification</option>
-                                        <option value="General Inquiry">General Inquiry</option>
-                                    </select>
-                                </div>
-                                <div class="hc-form-group">
-                                    <label class="hc-label" for="hc-message">Message (Optional)</label>
-                                    <textarea id="hc-message" class="hc-input hc-textarea" placeholder="Tell us briefly what you need help with..." rows="3"></textarea>
                                 </div>
                                 <div class="hc-submit-link" id="hcSubmitLink" role="button" tabindex="0">
                                     <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
@@ -534,7 +528,7 @@
                                         </ul>
                                     </div>
                                     
-                                    <a href="https://wa.me/923170427915?text=Hi,%20I'd%20like%20to%20inquire%20about%20Tahseer%20Appointment." target="_blank" class="text-link-luxury">Inquire via WhatsApp &rarr;</a>
+                                    <a href="#home" onclick="navigateTo(event, 'home'); setTimeout(() => document.getElementById('hc-name').focus(), 100);" class="text-link-luxury">Fill Inquiry Form &rarr;</a>
                                 </div>
                             </div>
                         </div>
@@ -560,7 +554,7 @@
                                         </ul>
                                     </div>
                                     
-                                    <a href="https://wa.me/923170427915?text=Hi,%20I'd%20like%20to%20inquire%20about%20Gamca%20Appointment." target="_blank" class="text-link-luxury">Inquire via WhatsApp &rarr;</a>
+                                    <a href="#home" onclick="navigateTo(event, 'home'); setTimeout(() => document.getElementById('hc-name').focus(), 100);" class="text-link-luxury">Fill Inquiry Form &rarr;</a>
                                 </div>
                             </div>
                         </div>
@@ -586,7 +580,7 @@
                                         </ul>
                                     </div>
                                     
-                                    <a href="https://wa.me/923170427915?text=Hi,%20I'd%20like%20to%20inquire%20about%20Navttc%20Appointment." target="_blank" class="text-link-luxury">Inquire via WhatsApp &rarr;</a>
+                                    <a href="#home" onclick="navigateTo(event, 'home'); setTimeout(() => document.getElementById('hc-name').focus(), 100);" class="text-link-luxury">Fill Inquiry Form &rarr;</a>
                                 </div>
                             </div>
                         </div>

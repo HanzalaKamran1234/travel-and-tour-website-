@@ -332,9 +332,9 @@ function initContactForm() {
 
 function handleContactSubmit() {
     const name = document.getElementById('hc-name')?.value?.trim() || '';
+    const passport = document.getElementById('hc-passport')?.value?.trim() || '';
+    const email = document.getElementById('hc-email')?.value?.trim() || '';
     const phone = document.getElementById('hc-phone')?.value?.trim() || '';
-    const service = document.getElementById('hc-service')?.value || '';
-    const message = document.getElementById('hc-message')?.value?.trim() || '';
 
     if (!name || !phone) {
         // Highlight required fields briefly
@@ -348,11 +348,11 @@ function handleContactSubmit() {
         return;
     }
 
-    let msg = `Assalam o Alaikum, I'd like to inquire about your services.%0A%0A`;
+    let msg = `Assalam o Alaikum, I'd like to submit an inquiry.%0A%0A`;
     msg += `*Name:* ${encodeURIComponent(name)}%0A`;
-    msg += `*Phone:* ${encodeURIComponent(phone)}%0A`;
-    if (service) msg += `*Service:* ${encodeURIComponent(service)}%0A`;
-    if (message) msg += `*Message:* ${encodeURIComponent(message)}%0A`;
+    if (passport) msg += `*Passport No:* ${encodeURIComponent(passport)}%0A`;
+    if (email) msg += `*Email:* ${encodeURIComponent(email)}%0A`;
+    msg += `*Contact No:* ${encodeURIComponent(phone)}%0A`;
 
     window.open(`https://wa.me/923170427915?text=${msg}`, '_blank');
 }
