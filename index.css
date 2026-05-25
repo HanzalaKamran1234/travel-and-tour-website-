@@ -1906,3 +1906,127 @@ a.contact-detail-card:hover {
     color: #fff;
     font-family: var(--font-display);
 }
+
+/* Multi-Step Modal Styles */
+.modal-stepper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+.modal-stepper .step {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.4);
+    font-weight: 600;
+    transition: color 0.3s;
+}
+.modal-stepper .step.active {
+    color: var(--color-gold);
+}
+.modal-stepper .step-line {
+    height: 2px;
+    width: 40px;
+    background: rgba(255,255,255,0.1);
+    margin: 0 15px;
+}
+
+.modal-step {
+    display: none;
+    animation: fadeInStep 0.4s ease forwards;
+}
+.modal-step.active {
+    display: block;
+}
+
+@keyframes fadeInStep {
+    from { opacity: 0; transform: translateX(10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* File Upload Zone */
+.file-upload-zone {
+    border: 2px dashed rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(4, 27, 74, 0.5);
+}
+.file-upload-zone:hover, .file-upload-zone.dragover {
+    border-color: var(--color-gold);
+    background: rgba(245, 179, 0, 0.05);
+}
+.upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.85rem;
+}
+.upload-icon {
+    width: 32px;
+    height: 32px;
+    fill: var(--color-gold);
+}
+.image-preview {
+    max-width: 100%;
+    max-height: 150px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Payment Methods */
+.payment-methods-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.payment-card {
+    cursor: pointer;
+}
+.payment-card input {
+    display: none;
+}
+.payment-card-inner {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+.payment-card:hover .payment-card-inner {
+    background: rgba(255,255,255,0.06);
+}
+.payment-card input:checked + .payment-card-inner {
+    border-color: var(--color-gold);
+    background: rgba(245, 179, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(245, 179, 0, 0.15);
+}
+.payment-icon {
+    font-size: 1.5rem;
+}
+.payment-name {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.btn-back {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    padding: 0 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.btn-back:hover {
+    background: rgba(255,255,255,0.1);
+}

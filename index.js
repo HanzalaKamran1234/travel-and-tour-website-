@@ -358,17 +358,89 @@ function handleContactSubmit() {
 }
 
 /* ==========================================================================
-   9. INQUIRY MODAL
+   9. INQUIRY MODAL (MULTI-STEP)
    ========================================================================== */
 function openInquiryModal(e) {
     if (e) e.preventDefault();
     const modal = document.getElementById('inquiryModal');
-    if (modal) modal.classList.add('active');
+    if (modal) {
+        modal.classList.add('active');
+        goToStep1(); // Always open on step 1
+    }
 }
 
 function closeInquiryModal() {
     const modal = document.getElementById('inquiryModal');
     if (modal) modal.classList.remove('active');
+}
+
+function goToStep1() {
+    document.getElementById('modal-step-2').classList.remove('active');
+    document.getElementById('modal-step-1').classList.add('active');
+    document.getElementById('step2-indicator').classList.remove('active');
+    document.getElementById('step1-indicator').classList.add('active');
+}
+
+function goToStep2() {
+    const name = document.getElementById('modal-name')?.value?.trim() || '';
+    const phone = document.getElementById('modal-phone')?.value?.trim() || '';
+    const email = document.getElementById('modal-email')?.value?.trim() || '';
+
+    if (!name || !phone || !email) {
+        ['modal-name', 'modal-phone', 'modal-email'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el && !el.value.trim()) {
+                el.style.borderColor = '#ff6b6b';
+                setTimeout(() => { el.style.borderColor = ''; }, 2000);
+            }
+        });
+        return; // Stop if required fields are missing
+    }
+
+    document.getElementById('modal-step-1').classList.remove('active');
+    document.getElementById('modal-step-2').classList.add('active');
+    document.getElementById('step1-indicator').classList.remove('active');
+    document.getElementById('step2-indicator').classList.add('active');
+}
+
+/* File Upload Logic */
+let uploadedPassportFile = null;
+
+function handleDragOver(e) {
+    e.preventDefault();
+    document.getElementById('file-upload-zone').classList.add('dragover');
+}
+function handleDragLeave(e) {
+    e.preventDefault();
+    document.getElementById('file-upload-zone').classList.remove('dragover');
+}
+function handleDrop(e) {
+    e.preventDefault();
+    document.getElementById('file-upload-zone').classList.remove('dragover');
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        processFile(e.dataTransfer.files[0]);
+    }
+}
+function handleFileSelect(e) {
+    if (e.target.files && e.target.files.length > 0) {
+        processFile(e.target.files[0]);
+    }
+}
+function processFile(file) {
+    const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+    if (!validTypes.includes(file.type)) {
+        alert("Please upload a valid image file (JPG, PNG).");
+        return;
+    }
+    uploadedPassportFile = file;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        document.getElementById('upload-placeholder').style.display = 'none';
+        const imgPreview = document.getElementById('image-preview');
+        imgPreview.src = e.target.result;
+        imgPreview.style.display = 'block';
+    }
+    reader.readAsDataURL(file);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -380,26 +452,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function handleModalSubmit() {
     const name = document.getElementById('modal-name')?.value?.trim() || '';
-    const passport = document.getElementById('modal-passport')?.value?.trim() || '';
-    const email = document.getElementById('modal-email')?.value?.trim() || '';
     const phone = document.getElementById('modal-phone')?.value?.trim() || '';
-
-    if (!name || !phone) {
-        ['modal-name', 'modal-phone'].forEach(id => {
-            const el = document.getElementById(id);
-            if (el && !el.value.trim()) {
-                el.style.borderColor = '#ff6b6b';
-                setTimeout(() => { el.style.borderColor = ''; }, 2000);
-            }
-        });
-        return;
+    const email = document.getElementById('modal-email')?.value?.trim() || '';
+    
+    // Get selected payment method
+    let paymentMethod = 'Not selected';
+    const paymentRadios = document.getElementsByName('payment-method');
+    for (let i = 0; i < paymentRadios.length; i++) {
+        if (paymentRadios[i].checked) {
+            paymentMethod = paymentRadios[i].value;
+            break;
+        }
     }
 
     let msg = `Assalam o Alaikum, I'd like to submit an inquiry.%0A%0A`;
     msg += `*Name:* ${encodeURIComponent(name)}%0A`;
-    if (passport) msg += `*Passport No:* ${encodeURIComponent(passport)}%0A`;
-    if (email) msg += `*Email:* ${encodeURIComponent(email)}%0A`;
+    msg += `*Email:* ${encodeURIComponent(email)}%0A`;
     msg += `*Contact No:* ${encodeURIComponent(phone)}%0A`;
+    msg += `*Payment Method:* ${encodeURIComponent(paymentMethod)}%0A%0A`;
+    
+    if (uploadedPassportFile) {
+        msg += `*(Note: I have my Passport Image ready to attach in this chat)*%0A`;
+    }
 
     window.open(`https://wa.me/923170427915?text=${msg}`, '_blank');
     closeInquiryModal();
