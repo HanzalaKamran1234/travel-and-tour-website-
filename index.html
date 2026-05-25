@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gulzar e Jannat - Premium Travel & Appointment Services</title>
+    <meta name="description" content="Gulzar e Jannat Travel and Tours Pvt. Ltd. provides high-end, premium appointment booking services for Tahseer, GAMCA, and NAVTTC. Safe, secure, and fast processing.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <!-- Dynamic Header / Navbar -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="#home" class="logo-area" onclick="navigateTo(event, 'home')">
+                <img src="logo.jpg" alt="Gulzar e Jannat Logo" class="brand-logo">
+                <div class="brand-text">
+                    <span class="brand-title">GULZAR E JANNAT</span>
+                    <span class="brand-subtitle">TRAVEL & TOURS</span>
+                </div>
+            </a>
+            
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active" onclick="navigateTo(event, 'home')">Home</a></li>
+                    <li><a href="#about" class="nav-link" onclick="navigateTo(event, 'about')">About</a></li>
+                    <li><a href="#services" class="nav-link" onclick="navigateTo(event, 'services')">Services</a></li>
+                    <li><a href="#contact" class="nav-link" onclick="navigateTo(event, 'contact')">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="btn btn-primary btn-nav-cta" onclick="openApplicationModal()">Apply Now</button>
+                <button class="hamburger-menu" id="hamburgerBtn" aria-label="Toggle Navigation">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area (SPA Views) -->
+    <main>
+        
+        <!-- ====================================
+             HOME PAGE VIEW
+             ==================================== -->
+        <section id="home" class="page-view active">
+            <!-- Modern Travel Banner / Image Slider -->
+            <div class="hero-slider-wrapper">
+                <div class="hero-slider" id="heroSlider">
+                    <!-- Slide 1 -->
+                    <div class="slide active" style="background-image: linear-gradient(rgba(4, 27, 74, 0.4), rgba(4, 27, 74, 0.8)), url('images/hero_airplane.png');">
+                        <div class="slide-content">
+                            <span class="badge-gold">Premium Agency</span>
+                            <h1 class="slide-title">Your Trusted Travel & Appointment Partner</h1>
+                            <p class="slide-description">Professional appointment booking services with fast process and trusted support.</p>
+                            <div class="slide-actions">
+                                <button class="btn btn-primary" onclick="openApplicationModal()">Apply Now</button>
+                                <a href="#contact" class="btn btn-secondary" onclick="navigateTo(event, 'contact')">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="slide" style="background-image: linear-gradient(rgba(4, 27, 74, 0.4), rgba(4, 27, 74, 0.8)), url('images/hero_terminal.png');">
+                        <div class="slide-content">
+                            <span class="badge-gold">International Standards</span>
+                            <h1 class="slide-title">Seamless Global Visa Appointments</h1>
+                            <p class="slide-description">Navigating international visa centers with unparalleled security, speed, and precision.</p>
+                            <div class="slide-actions">
+                                <button class="btn btn-primary" onclick="openApplicationModal()">Apply Now</button>
+                                <a href="#contact" class="btn btn-secondary" onclick="navigateTo(event, 'contact')">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slider Controls -->
+                <button class="slider-btn prev" id="sliderPrev" aria-label="Previous Slide">
+                    <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                </button>
+                <button class="slider-btn next" id="sliderNext" aria-label="Next Slide">
+                    <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                </button>
+                <!-- Dots Indicator -->
+                <div class="slider-dots" id="sliderDots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+
+            <!-- Why Choose Us Section -->
+            <section class="section-padding background-cream-pattern">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <span class="section-subtitle">Excellence in Service</span>
+                        <h2 class="section-title text-navy">Why Choose Us</h2>
+                        <div class="title-accent-bar"></div>
+                    </div>
+                    <div class="grid grid-4 cols-md-2 cols-sm-1 gap-30">
+                        <!-- Card 1 -->
+                        <div class="feature-card animate-on-scroll">
+                            <div class="feature-icon-wrapper">
+                                <svg viewBox="0 0 24 24" class="feature-icon"><path d="M13 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V9l-7-7zm1 9h-4v2h4v3l4-4-4-4v3z"/></svg>
+                            </div>
+                            <h3 class="feature-card-title">Fast Processing</h3>
+                            <p class="feature-card-text">We optimize schedule acquisition to deliver appointment confirmations in record time.</p>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="feature-card animate-on-scroll">
+                            <div class="feature-icon-wrapper">
+                                <svg viewBox="0 0 24 24" class="feature-icon"><path d="M21.9 2.19c-.43-.43-1.01-.69-1.66-.69H3.76c-1.29 0-2.33 1.04-2.33 2.33v16.33c0 1.29 1.04 2.33 2.33 2.33h16.48c1.29 0 2.33-1.04 2.33-2.33V3.86c0-.66-.26-1.24-.69-1.67zM18 10h-4v8h-4v-8H6V6h12v4z"/></svg>
+                            </div>
+                            <h3 class="feature-card-title">Trusted Support</h3>
+                            <p class="feature-card-text">Direct access to professional specialists to resolve inquiries and track application stages.</p>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="feature-card animate-on-scroll">
+                            <div class="feature-icon-wrapper">
+                                <svg viewBox="0 0 24 24" class="feature-icon"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
+                            </div>
+                            <h3 class="feature-card-title">Professional Guidance</h3>
+                            <p class="feature-card-text">We verify details meticulously to prevent consulate rejections and process errors.</p>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="feature-card animate-on-scroll">
+                            <div class="feature-icon-wrapper">
+                                <svg viewBox="0 0 24 24" class="feature-icon"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                            </div>
+                            <h3 class="feature-card-title">Secure Process</h3>
+                            <p class="feature-card-text">Advanced end-to-end security measures safeguard passport records and personal information.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Preview Cards -->
+            <section class="section-padding bg-white">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <span class="section-subtitle">Dedicated Appointment Solutions</span>
+                        <h2 class="section-title text-navy">Our Specialized Services</h2>
+                        <div class="title-accent-bar"></div>
+                    </div>
+                    <div class="grid grid-3 cols-md-1 gap-40">
+                        <!-- Service 1 -->
+                        <div class="service-preview-card animate-on-scroll">
+                            <div class="card-image-wrapper">
+                                <img src="images/service_tasheer.png" alt="Tahseer Appointment" class="card-image">
+                                <div class="card-badge">Saudi Visa Specialist</div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title-text">Tasheer Appointment Booking</h3>
+                                <p class="card-description-text">Official document submission and biometric appointment scheduling for Saudi Arabia visas. Fast, verified, and secure.</p>
+                                <div class="card-footer-actions">
+                                    <button class="btn btn-primary-outline btn-full" onclick="openApplicationModal('Tahseer Appointment')">Apply Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Service 2 -->
+                        <div class="service-preview-card animate-on-scroll">
+                            <div class="card-image-wrapper">
+                                <img src="images/service_gamca.png" alt="GAMCA Appointment" class="card-image">
+                                <div class="card-badge font-orange">Gulf Health Approval</div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title-text">GAMCA / Wafid Medical Booking</h3>
+                                <p class="card-description-text">Hassle-free scheduling for pre-departure medical assessments required for working and residency in GCC nations.</p>
+                                <div class="card-footer-actions">
+                                    <button class="btn btn-primary-outline btn-full" onclick="openApplicationModal('GAMCA Appointment')">Apply Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Service 3 -->
+                        <div class="service-preview-card animate-on-scroll">
+                            <div class="card-image-wrapper">
+                                <img src="images/service_navttc.png" alt="NAVTTC Appointment" class="card-image">
+                                <div class="card-badge font-blue">Vocational Validation</div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title-text">NAVTTC Verification Booking</h3>
+                                <p class="card-description-text">Secure your professional skill evaluation and diploma attestation appointments for certified international employment.</p>
+                                <div class="card-footer-actions">
+                                    <button class="btn btn-primary-outline btn-full" onclick="openApplicationModal('NAVTTC Appointment')">Apply Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section class="section-padding bg-navy text-white relative overflow-hidden">
+                <div class="absolute-decor-circle opacity-10"></div>
+                <div class="container relative">
+                    <div class="grid grid-3 cols-sm-1 gap-40 text-center">
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="15000">0</div>
+                            <div class="stat-label">Happy Clients Supported</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="25000">0</div>
+                            <div class="stat-label">Applications Processed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number-text">24/7</div>
+                            <div class="stat-label">Support Availability</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Client Trust Section -->
+            <section class="section-padding bg-cream">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <span class="section-subtitle">Our Promise</span>
+                        <h2 class="section-title text-navy">Verified Service Standards</h2>
+                        <div class="title-accent-bar"></div>
+                    </div>
+                    <div class="grid grid-4 cols-md-2 cols-sm-1 gap-20">
+                        <div class="trust-badge-card animate-on-scroll">
+                            <svg viewBox="0 0 24 24" class="trust-icon"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                            <h4 class="trust-card-title">Professional Service</h4>
+                        </div>
+                        <div class="trust-badge-card animate-on-scroll">
+                            <svg viewBox="0 0 24 24" class="trust-icon"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                            <h4 class="trust-card-title">Secure Payment</h4>
+                        </div>
+                        <div class="trust-badge-card animate-on-scroll">
+                            <svg viewBox="0 0 24 24" class="trust-icon"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+                            <h4 class="trust-card-title">WhatsApp Support</h4>
+                        </div>
+                        <div class="trust-badge-card animate-on-scroll">
+                            <svg viewBox="0 0 24 24" class="trust-icon"><path d="M20.37 8.91l-8-5a1 1 0 0 0-1.07 0l-8 5A1 1 0 0 0 3 9.76v5.48a1 1 0 0 0 .5.85l8 5a1 1 0 0 0 1.07 0l8-5a1 1 0 0 0 .5-.85V9.76a1 1 0 0 0-.7-.85zM12 18.52l-6-3.75V10.7l6 3.75 6-3.75v4.07z"/></svg>
+                            <h4 class="trust-card-title">Fast Response</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Banner -->
+            <section class="cta-banner-wrapper">
+                <div class="container">
+                    <div class="cta-banner-container">
+                        <div class="cta-banner-content">
+                            <h2>Start Your Application Today</h2>
+                            <p>Get in touch or start processing your official Tasheer, GAMCA, or NAVTTC appointment through our secure, quick-response registration portal.</p>
+                        </div>
+                        <div class="cta-banner-button">
+                            <button class="btn btn-primary font-bold" onclick="openApplicationModal()">Start Application</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- ====================================
+             ABOUT PAGE VIEW
+             ==================================== -->
+        <section id="about" class="page-view">
+            <!-- About Hero -->
+            <div class="page-hero-banner" style="background-image: linear-gradient(rgba(4, 27, 74, 0.7), rgba(4, 27, 74, 0.95)), url('images/hero_terminal.png');">
+                <div class="container text-center">
+                    <h1 class="page-hero-title">About Gulzar e Jannat</h1>
+                    <p class="page-hero-subtitle">Branding excellence, verified trust, and premium travel coordination.</p>
+                </div>
+            </div>
+
+            <!-- Intro Section -->
+            <section class="section-padding bg-white">
+                <div class="container">
+                    <div class="grid grid-2 cols-md-1 gap-50 items-center">
+                        <div class="about-image-layout">
+                            <img src="logo.jpg" alt="Gulzar e Jannat Agency Seal" class="about-brand-seal animate-on-scroll">
+                            <div class="about-decorative-box"></div>
+                        </div>
+                        <div class="about-intro-text">
+                            <span class="section-subtitle">Who We Are</span>
+                            <h2 class="section-title text-navy">A Legacy of Reliable Travel Operations</h2>
+                            <div class="title-accent-bar margin-left-0"></div>
+                            <p class="paragraph-text">Gulzar e Jannat Travel and Tours Pvt. Ltd. represents the highest echelon of visa registration and appointment facilitation in Pakistan. Founded on the core principles of reliability, data privacy, and rapid execution, we serve as the vital link between international consulates and aspiring global travellers.</p>
+                            <p class="paragraph-text">We recognize that acquiring travel-related medical slips or scheduling biometric profiles can be complex. Our dedicated appointment specialist team reviews and formats each detail, ensuring zero consulate bounce rates and standard compliance.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mission & Vision Section -->
+            <section class="section-padding bg-cream">
+                <div class="container">
+                    <div class="grid grid-2 cols-md-1 gap-40">
+                        <div class="mission-vision-card animate-on-scroll">
+                            <div class="card-icon-header font-gold">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                            </div>
+                            <h3>Our Mission</h3>
+                            <p>To eliminate the complexity of international appointment scheduling for Pakistani citizens, offering a secure, simplified, and rapid process that gets you travel-ready without the traditional stress.</p>
+                        </div>
+                        <div class="mission-vision-card animate-on-scroll">
+                            <div class="card-icon-header font-blue">
+                                <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                            </div>
+                            <h3>Our Vision</h3>
+                            <p>To become the most reliable and premium platform for international visa appointment bookings in Pakistan, establishing long-term trust through absolute compliance and customer care.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Process / Timeline Section -->
+            <section class="section-padding bg-white">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <span class="section-subtitle">How We Work</span>
+                        <h2 class="section-title text-navy">Our Simplified Workflow</h2>
+                        <div class="title-accent-bar"></div>
+                    </div>
+                    <div class="timeline-container">
+                        <!-- Step 1 -->
+                        <div class="timeline-item animate-on-scroll">
+                            <div class="timeline-number">01</div>
+                            <div class="timeline-content">
+                                <h4>Submit Online Details</h4>
+                                <p>Provide basic details using our secure appointment booking form. It takes less than 2 minutes.</p>
+                            </div>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="timeline-item animate-on-scroll">
+                            <div class="timeline-number">02</div>
+                            <div class="timeline-content">
+                                <h4>Select Secure Payment</h4>
+                                <p>Choose from standard local methods including JazzCash, Easypaisa, or direct Bank Transfer to pay the process fees.</p>
+                            </div>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="timeline-item animate-on-scroll">
+                            <div class="timeline-number">03</div>
+                            <div class="timeline-content">
+                                <h4>Specialist Review</h4>
+                                <p>Our operations desk reviews your documentation formatting, checking passport validation and guidelines.</p>
+                            </div>
+                        </div>
+                        <!-- Step 4 -->
+                        <div class="timeline-item animate-on-scroll">
+                            <div class="timeline-number">04</div>
+                            <div class="timeline-content">
+                                <h4>WhatsApp Confirmation</h4>
+                                <p>Receive your appointment slip directly on WhatsApp within hours, completely registered on the official consulates portals.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- ====================================
+             SERVICES PAGE VIEW
+             ==================================== -->
+        <section id="services" class="page-view">
+            <!-- Services Hero -->
+            <div class="page-hero-banner" style="background-image: linear-gradient(rgba(4, 27, 74, 0.7), rgba(4, 27, 74, 0.95)), url('images/hero_airplane.png');">
+                <div class="container text-center">
+                    <h1 class="page-hero-title">Specialized Appointment Services</h1>
+                    <p class="page-hero-subtitle">Premium registrations for official document processing and medical assessments.</p>
+                </div>
+            </div>
+
+            <!-- Full Services Section -->
+            <section class="section-padding bg-cream-pattern">
+                <div class="container">
+                    <div class="services-list-wrapper">
+                        
+                        <!-- Service 1 Detail Card -->
+                        <div class="service-detail-card animate-on-scroll">
+                            <div class="service-detail-grid">
+                                <div class="service-detail-image-box">
+                                    <img src="images/service_tasheer.png" alt="Tasheer Appointment Details">
+                                </div>
+                                <div class="service-detail-info">
+                                    <span class="service-category">Consulate Biometrics</span>
+                                    <h2 class="service-detail-title">Tasheer Saudi Visa Appointment</h2>
+                                    <p class="service-detail-desc">Secure your biometric enrollment and physical document verification slots at the official Tasheer visa service centers in Pakistan. Essential for work, family visit, residency, and commercial visas to the Kingdom of Saudi Arabia.</p>
+                                    
+                                    <div class="service-requirements">
+                                        <h5>Required Documentation:</h5>
+                                        <ul class="check-list">
+                                            <li>Original Passport (Valid for at least 6 months)</li>
+                                            <li>CNIC / NICOP Copy</li>
+                                            <li>Visa Approval / Invitation Letter copy</li>
+                                            <li>Two passport-sized photographs with white backgrounds</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary" onclick="openApplicationModal('Tahseer Appointment')">Book Tasheer Appointment</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service 2 Detail Card -->
+                        <div class="service-detail-card animate-on-scroll">
+                            <div class="service-detail-grid">
+                                <div class="service-detail-image-box">
+                                    <img src="images/service_gamca.png" alt="GAMCA Appointment Details">
+                                </div>
+                                <div class="service-detail-info">
+                                    <span class="service-category">GCC Pre-Departure Health</span>
+                                    <h2 class="service-detail-title">GAMCA / Wafid Medical Appointment</h2>
+                                    <p class="service-detail-desc">Generate your mandatory Wafid/GAMCA medical slip for Gulf travel. Our system coordinates slots with authorized GCC medical examination boards in Islamabad, Lahore, Karachi, Peshawar, Multan, and other key cities.</p>
+                                    
+                                    <div class="service-requirements">
+                                        <h5>Required Documentation:</h5>
+                                        <ul class="check-list">
+                                            <li>Original Passport & Copy (valid minimum 6 months)</li>
+                                            <li>Original CNIC & Copy</li>
+                                            <li>Specific destination details (Saudi Arabia, UAE, Oman, etc.)</li>
+                                            <li>4 passport-sized photographs</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary" onclick="openApplicationModal('GAMCA Appointment')">Book GAMCA Appointment</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service 3 Detail Card -->
+                        <div class="service-detail-card animate-on-scroll">
+                            <div class="service-detail-grid">
+                                <div class="service-detail-image-box">
+                                    <img src="images/service_navttc.png" alt="NAVTTC Appointment Details">
+                                </div>
+                                <div class="service-detail-info">
+                                    <span class="service-category">Vocational Certification</span>
+                                    <h2 class="service-detail-title">NAVTTC Verification Appointment</h2>
+                                    <p class="service-detail-desc">Schedule your skills validation assessments and official diploma verification appointments at the National Vocational and Technical Training Commission. Vital for skilled laborers needing attested degrees for official overseas work visas.</p>
+                                    
+                                    <div class="service-requirements">
+                                        <h5>Required Documentation:</h5>
+                                        <ul class="check-list">
+                                            <li>Original Diplomas / Skill Certificates</li>
+                                            <li>Academic Transcripts & Copy</li>
+                                            <li>Original CNIC</li>
+                                            <li>Employer offer letter copy (if applicable)</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary" onclick="openApplicationModal('NAVTTC Appointment')">Book NAVTTC Appointment</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- ====================================
+             CONTACT PAGE VIEW
+             ==================================== -->
+        <section id="contact" class="page-view">
+            <!-- Contact Hero -->
+            <div class="page-hero-banner" style="background-image: linear-gradient(rgba(4, 27, 74, 0.7), rgba(4, 27, 74, 0.95)), url('images/hero_terminal.png');">
+                <div class="container text-center">
+                    <h1 class="page-hero-title">Contact Our Office</h1>
+                    <p class="page-hero-subtitle">Connect with our support team for prompt application status and booking support.</p>
+                </div>
+            </div>
+
+            <!-- Contact Grid Section -->
+            <section class="section-padding bg-white">
+                <div class="container">
+                    <div class="grid grid-2 cols-md-1 gap-50">
+                        
+                        <!-- Contact Info Cards -->
+                        <div class="contact-info-column animate-on-scroll">
+                            <span class="section-subtitle">Get In Touch</span>
+                            <h2 class="section-title text-navy">Direct Communication</h2>
+                            <div class="title-accent-bar margin-left-0"></div>
+                            
+                            <p class="paragraph-text margin-bottom-30">Have urgent questions about required appointment documents or processing times? Our specialists are available during business hours to assist you.</p>
+                            
+                            <div class="contact-cards-stack">
+                                <!-- WhatsApp Card -->
+                                <a href="https://wa.me/923170427915" target="_blank" class="contact-detail-card">
+                                    <div class="contact-card-icon whatsapp-bg">
+                                        <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.82 14.1c-.26.74-1.52 1.36-2.08 1.43-.5.06-1.15.11-3.23-.75-2.66-1.1-4.37-3.8-4.5-3.98-.13-.18-1.08-1.44-1.08-2.75 0-1.31.69-1.96.93-2.22.25-.26.54-.33.72-.33.18 0 .36.01.52.02.17.01.39-.06.61.47.23.55.77 1.88.84 2.02.07.14.12.31.02.5-.1.19-.15.31-.3.49-.15.18-.32.4-.46.54-.15.16-.31.33-.13.64.18.31.8 1.31 1.72 2.13.92.82 1.7-1.07 1.94-1.25.18-.13.36-.1.52-.02.16.08 1.05.49 1.23.58.18.09.3.14.35.22.05.08.05.49-.21 1.23z"/></svg>
+                                    </div>
+                                    <div class="contact-card-info">
+                                        <span class="contact-label">WhatsApp Helpline</span>
+                                        <span class="contact-value">+92 317 0427915</span>
+                                    </div>
+                                </a>
+
+                                <!-- Email Card -->
+                                <a href="mailto:info@gulzarejannattravel.com" class="contact-detail-card">
+                                    <div class="contact-card-icon navy-bg">
+                                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                                    </div>
+                                    <div class="contact-card-info">
+                                        <span class="contact-label">Email Address</span>
+                                        <span class="contact-value">info@gulzarejannattravel.com</span>
+                                    </div>
+                                </a>
+
+                                <!-- Office Card -->
+                                <div class="contact-detail-card">
+                                    <div class="contact-card-icon orange-bg">
+                                        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                                    </div>
+                                    <div class="contact-card-info">
+                                        <span class="contact-label">Main Branch</span>
+                                        <span class="contact-value">Gulzar e Jannat Travel, Islamabad, Pakistan</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Form Card -->
+                        <div class="contact-form-column animate-on-scroll">
+                            <div class="glass-form-card">
+                                <h3 class="form-title">Send a Message</h3>
+                                <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                                    <div class="form-group">
+                                        <label for="contactName" class="form-label">Full Name</label>
+                                        <input type="text" id="contactName" class="form-control" placeholder="Enter your full name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contactEmail" class="form-label">Email Address</label>
+                                        <input type="email" id="contactEmail" class="form-control" placeholder="Enter your email address" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contactSubject" class="form-label">Subject</label>
+                                        <input type="text" id="contactSubject" class="form-control" placeholder="Appointment / General Enquiry" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contactMessage" class="form-label">Message Details</label>
+                                        <textarea id="contactMessage" class="form-control" rows="4" placeholder="Write details here..." required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vector Map Section -->
+            <section class="section-padding bg-cream relative">
+                <div class="container text-center">
+                    <h3 class="margin-bottom-20 text-navy font-playfair">Global Network & Presence</h3>
+                    <p class="paragraph-text max-width-600 margin-auto margin-bottom-40">Connecting applicants across major hubs in Pakistan to official verification consulates and embassies worldwide.</p>
+                    <div class="map-vector-placeholder animate-on-scroll">
+                        <div class="map-inner-glow"></div>
+                        <div class="map-location-dot pin-islamabad" data-label="Headquarters"></div>
+                        <div class="map-location-dot pin-lahore" data-label="Lahore Branch"></div>
+                        <div class="map-location-dot pin-karachi" data-label="Karachi Branch"></div>
+                        <div class="map-location-dot pin-peshawar" data-label="Peshawar Support"></div>
+                        <span class="map-placeholder-text">Official Service Network (Pakistan Map Visualization)</span>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+    </main>
+
+    <!-- ====================================
+         APPLICATION FORM MODAL SYSTEM
+         ==================================== -->
+    <div class="modal-overlay" id="appModal">
+        <div class="modal-card animate-modal">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Book Appointment Slot</h3>
+                <button class="modal-close" onclick="closeApplicationModal()">&times;</button>
+            </div>
+            
+            <!-- Step Indicators -->
+            <div class="modal-steps">
+                <div class="step-indicator active" id="indicatorStep1">
+                    <span class="step-num">1</span>
+                    <span class="step-label">Applicant Info</span>
+                </div>
+                <div class="step-line" id="stepLine1"></div>
+                <div class="step-indicator" id="indicatorStep2">
+                    <span class="step-num">2</span>
+                    <span class="step-label">Payment Option</span>
+                </div>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="modal-body">
+                
+                <!-- Step 1: Info Form -->
+                <div class="step-panel active" id="panelStep1">
+                    <form id="appointmentForm" onsubmit="goToPaymentStep(event)">
+                        <div class="form-group">
+                            <label for="appService" class="form-label">Service Type</label>
+                            <select id="appService" class="form-control" required>
+                                <option value="" disabled selected>Select an Appointment Service</option>
+                                <option value="Tahseer Appointment">Tasheer Appointment Booking</option>
+                                <option value="GAMCA Appointment">GAMCA / Wafid Medical Booking</option>
+                                <option value="NAVTTC Appointment">NAVTTC Verification Booking</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="appName" class="form-label">Full Name (As on Passport)</label>
+                            <input type="text" id="appName" class="form-control" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="appPassport" class="form-label">Passport Number</label>
+                            <input type="text" id="appPassport" class="form-control uppercase" placeholder="e.g. AB1234567" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="appPhone" class="form-label">Contact Number (WhatsApp Active)</label>
+                            <input type="tel" id="appPhone" class="form-control" placeholder="e.g. +923001234567" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="appEmail" class="form-label">Email Address</label>
+                            <input type="email" id="appEmail" class="form-control" placeholder="name@domain.com" required>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" onclick="closeApplicationModal()">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Step 2: Payment Selector -->
+                <div class="step-panel" id="panelStep2">
+                    <p class="payment-intro-text">Please choose a verification payment channel below to process your appointment slip request. Transactions are handled securely.</p>
+                    
+                    <div class="payment-methods-grid">
+                        <!-- JazzCash -->
+                        <div class="payment-card" onclick="selectPaymentMethod('JazzCash', this)">
+                            <div class="payment-logo-area">
+                                <span class="method-badge orange-badge">JazzCash</span>
+                            </div>
+                            <h4 class="payment-title">JazzCash Mobile Wallet</h4>
+                            <div class="payment-details">
+                                <p><strong>Account Name:</strong> GULZAR E JANNAT</p>
+                                <p><strong>Account Number:</strong> 0317 0427915</p>
+                            </div>
+                            <div class="selection-indicator"></div>
+                        </div>
+
+                        <!-- Easypaisa -->
+                        <div class="payment-card" onclick="selectPaymentMethod('Easypaisa', this)">
+                            <div class="payment-logo-area">
+                                <span class="method-badge green-badge">Easypaisa</span>
+                            </div>
+                            <h4 class="payment-title">Easypaisa Mobile Wallet</h4>
+                            <div class="payment-details">
+                                <p><strong>Account Name:</strong> GULZAR E JANNAT</p>
+                                <p><strong>Account Number:</strong> 0317 0427915</p>
+                            </div>
+                            <div class="selection-indicator"></div>
+                        </div>
+
+                        <!-- Bank Transfer -->
+                        <div class="payment-card" onclick="selectPaymentMethod('Bank Transfer', this)">
+                            <div class="payment-logo-area">
+                                <span class="method-badge blue-badge">Bank Transfer</span>
+                            </div>
+                            <h4 class="payment-title">Allied Bank Limited</h4>
+                            <div class="payment-details">
+                                <p><strong>Account Name:</strong> Gulzar e Jannat Travel & Tours</p>
+                                <p><strong>Account No:</strong> 0123-456789-01-2</p>
+                                <p><strong>IBAN:</strong> PK12 ABPA 0123 4567 8901 2000</p>
+                            </div>
+                            <div class="selection-indicator"></div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="prevModalStep()">Back</button>
+                        <button type="button" class="btn btn-primary" id="btnWhatsAppSubmit" onclick="submitToWhatsApp()" disabled>Confirm & Submit via WhatsApp</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================
+         FOOTER
+         ==================================== -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                
+                <!-- Brand Info Col -->
+                <div class="footer-col brand-col">
+                    <a href="#home" class="logo-area" onclick="navigateTo(event, 'home')">
+                        <img src="logo.jpg" alt="Gulzar e Jannat Logo" class="brand-logo">
+                        <div class="brand-text">
+                            <span class="brand-title text-white">GULZAR E JANNAT</span>
+                            <span class="brand-subtitle text-gold">TRAVEL & TOURS</span>
+                        </div>
+                    </a>
+                    <p class="footer-intro-text">Professional visa registrations, appointment booking, and certified medical slip coordinations. Reliable services backed by strict standards.</p>
+                    <div class="social-links-row">
+                        <!-- Facebook -->
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook Link" class="social-btn fb">
+                            <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram Link" class="social-btn ig">
+                            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                        </a>
+                        <!-- LinkedIn -->
+                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn Link" class="social-btn ln">
+                            <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links Col -->
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Navigation</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="#home" onclick="navigateTo(event, 'home')">Home</a></li>
+                        <li><a href="#about" onclick="navigateTo(event, 'about')">About Us</a></li>
+                        <li><a href="#services" onclick="navigateTo(event, 'services')">Our Services</a></li>
+                        <li><a href="#contact" onclick="navigateTo(event, 'contact')">Contact Office</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services Links Col -->
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Specialized Services</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="#services" onclick="navigateTo(event, 'services')">Tasheer Appointment</a></li>
+                        <li><a href="#services" onclick="navigateTo(event, 'services')">GAMCA Medical Slip</a></li>
+                        <li><a href="#services" onclick="navigateTo(event, 'services')">NAVTTC Verification</a></li>
+                    </ul>
+                </div>
+
+                <!-- Direct Contact Col -->
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Direct Helpline</h4>
+                    <div class="footer-contact-info">
+                        <p class="footer-phone-main">+92 317 0427915</p>
+                        <p class="footer-email-main">info@gulzarejannattravel.com</p>
+                        <a href="https://wa.me/923170427915" target="_blank" class="btn btn-primary btn-footer-wa">
+                            <svg viewBox="0 0 24 24" class="wa-small-icon"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.005 5.324 5.329.002 11.894 0c3.18.001 6.167 1.24 8.413 3.488 2.247 2.248 3.481 5.24 3.48 8.414-.004 6.57-5.328 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L0 24zm6.59-4.846c1.6.95 3.197 1.451 4.793 1.453 5.4 0 9.794-4.393 9.798-9.797.002-2.617-1.017-5.078-2.87-6.932-1.854-1.854-4.316-2.873-6.93-2.875-5.399 0-9.794 4.394-9.798 9.798-.002 1.705.47 3.328 1.365 4.786l-.953 3.48 3.595-.942z"/></svg>
+                            WhatsApp Us
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer Bottom Bar -->
+            <div class="footer-bottom-bar">
+                <p>&copy; 2026 Gulzar e Jannat Travel and Tours Pvt. Ltd. All rights reserved. Registered agency in Pakistan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Pulse WhatsApp Widget -->
+    <a href="https://wa.me/923170427915" target="_blank" class="floating-whatsapp-widget" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24" class="wa-widget-icon"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.82 14.1c-.26.74-1.52 1.36-2.08 1.43-.5.06-1.15.11-3.23-.75-2.66-1.1-4.37-3.8-4.5-3.98-.13-.18-1.08-1.44-1.08-2.75 0-1.31.69-1.96.93-2.22.25-.26.54-.33.72-.33.18 0 .36.01.52.02.17.01.39-.06.61.47.23.55.77 1.88.84 2.02.07.14.12.31.02.5-.1.19-.15.31-.3.49-.15.18-.32.4-.46.54-.15.16-.31.33-.13.64.18.31.8 1.31 1.72 2.13.92.82 1.7-1.07 1.94-1.25.18-.13.36-.1.52-.02.16.08 1.05.49 1.23.58.18.09.3.14.35.22.05.08.05.49-.21 1.23z"/></svg>
+    </a>
+
+    <!-- Main JS Controller -->
+    <script src="index.js"></script>
+</body>
+</html>
