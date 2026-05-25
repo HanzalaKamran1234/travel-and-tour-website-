@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initStatsCounter();
     initTestimonialsSlider();
+    initContactForm();
 
     const hash = window.location.hash.substring(1);
     if (hash && ['home', 'about', 'services', 'contact'].includes(hash)) {
@@ -95,7 +96,6 @@ function initHeroSlider() {
     const prevBtn = document.getElementById('sliderPrev');
     const nextBtn = document.getElementById('sliderNext');
     const dotsContainer = document.getElementById('sliderDots');
-    const slideCurrentNum = document.getElementById('slideCurrentNum');
     const progressBar = document.getElementById('sliderProgressBar');
 
     let currentSlide = 0;
@@ -118,11 +118,6 @@ function initHeroSlider() {
             slide.classList.toggle('active', isActive);
             if (dots[idx]) dots[idx].classList.toggle('active', isActive);
         });
-
-        // Update slide counter
-        if (slideCurrentNum) {
-            slideCurrentNum.textContent = String(currentSlide + 1).padStart(2, '0');
-        }
 
         // Restart progress bar
         if (progressBar) {
@@ -320,4 +315,44 @@ function initTestimonialsSlider() {
 
     goTo(0);
     startAuto();
+}
+
+/* ==========================================================================
+   8. WHATSAPP CONTACT FORM
+   ========================================================================== */
+function initContactForm() {
+    const submitBtn = document.getElementById('hcSubmitLink');
+    if (!submitBtn) return;
+
+    submitBtn.addEventListener('click', handleContactSubmit);
+    submitBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleContactSubmit(); }
+    });
+}
+
+function handleContactSubmit() {
+    const name = document.getElementById('hc-name')?.value?.trim() || '';
+    const phone = document.getElementById('hc-phone')?.value?.trim() || '';
+    const service = document.getElementById('hc-service')?.value || '';
+    const message = document.getElementById('hc-message')?.value?.trim() || '';
+
+    if (!name || !phone) {
+        // Highlight required fields briefly
+        ['hc-name', 'hc-phone'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el && !el.value.trim()) {
+                el.style.borderColor = '#ff6b6b';
+                setTimeout(() => { el.style.borderColor = ''; }, 2000);
+            }
+        });
+        return;
+    }
+
+    let msg = `Assalam o Alaikum, I'd like to inquire about your services.%0A%0A`;
+    msg += `*Name:* ${encodeURIComponent(name)}%0A`;
+    msg += `*Phone:* ${encodeURIComponent(phone)}%0A`;
+    if (service) msg += `*Service:* ${encodeURIComponent(service)}%0A`;
+    if (message) msg += `*Message:* ${encodeURIComponent(message)}%0A`;
+
+    window.open(`https://wa.me/923170427915?text=${msg}`, '_blank');
 }

@@ -1693,4 +1693,166 @@ a.contact-detail-card:hover {
     .footer-col.brand-col {
         grid-column: span 1;
     }
+    .home-contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   HOMEPAGE CONTACT FORM SECTION
+   ========================================================================== */
+.home-contact-section {
+    background: linear-gradient(160deg, #041B4A 0%, #062a6b 50%, #041B4A 100%);
+    position: relative;
+    overflow: hidden;
+}
+.home-contact-section::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,179,0,0.06), transparent 70%);
+    top: -150px; right: -100px;
+    pointer-events: none;
+}
+
+.home-contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.home-contact-info .title-accent-bar { background: var(--color-gold); }
+
+.home-contact-details {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.hc-detail-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.hc-detail-icon {
+    width: 44px; height: 44px;
+    background: rgba(245,179,0,0.12);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.hc-detail-icon svg {
+    width: 22px; height: 22px;
+    fill: var(--color-gold);
+}
+.hc-detail-label {
+    display: block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.45);
+    font-family: var(--font-body);
+    margin-bottom: 2px;
+}
+.hc-detail-value {
+    display: block;
+    font-size: 0.95rem;
+    color: #fff;
+    font-family: var(--font-body);
+    font-weight: 500;
+}
+
+/* Form Card */
+.home-contact-form-box {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+.hc-form-inner {
+    padding: 40px 36px;
+}
+.hc-form-group {
+    margin-bottom: 20px;
+}
+.hc-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 8px;
+    font-family: var(--font-body);
+}
+.hc-input {
+    width: 100%;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    transition: border-color 0.3s, background 0.3s;
+    outline: none;
+}
+.hc-input::placeholder { color: rgba(255,255,255,0.28); }
+.hc-input:focus {
+    border-color: var(--color-gold);
+    background: rgba(245,179,0,0.04);
+}
+.hc-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='rgba(255,255,255,0.4)' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+    cursor: pointer;
+}
+.hc-select option {
+    background: #041B4A;
+    color: #fff;
+}
+.hc-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* WhatsApp Submit Link */
+.hc-submit-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: var(--gradient-gold-orange);
+    border-radius: 14px;
+    color: var(--color-navy);
+    font-weight: 700;
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-top: 6px;
+}
+.hc-submit-link svg {
+    width: 20px; height: 20px;
+    fill: var(--color-navy);
+}
+.hc-submit-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(245,179,0,0.35);
+}
+
+.hc-form-note {
+    margin-top: 14px;
+    font-size: 0.76rem;
+    color: rgba(255,255,255,0.32);
+    font-family: var(--font-body);
 }
