@@ -98,7 +98,7 @@ function initStickyHeader() {
     const header = document.querySelector('.main-header');
     
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+        if (window.scrollY > 5) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
