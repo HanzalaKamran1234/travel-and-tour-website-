@@ -1856,3 +1856,53 @@ a.contact-detail-card:hover {
     color: rgba(255,255,255,0.32);
     font-family: var(--font-body);
 }
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(4, 27, 74, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+.modal-content {
+    background: linear-gradient(145deg, rgba(16, 44, 102, 0.95), rgba(4, 27, 74, 0.98));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 35px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    transform: translateY(20px) scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.modal-overlay.active .modal-content {
+    transform: translateY(0) scale(1);
+}
+.modal-close {
+    position: absolute;
+    top: 15px; right: 20px;
+    background: none; border: none;
+    font-size: 32px; cursor: pointer;
+    color: rgba(255,255,255,0.5);
+    transition: color 0.3s;
+}
+.modal-close:hover {
+    color: #fff;
+}
+.modal-content .form-title {
+    color: #fff;
+    font-family: var(--font-display);
+}

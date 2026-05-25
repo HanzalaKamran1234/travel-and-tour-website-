@@ -356,3 +356,51 @@ function handleContactSubmit() {
 
     window.open(`https://wa.me/923170427915?text=${msg}`, '_blank');
 }
+
+/* ==========================================================================
+   9. INQUIRY MODAL
+   ========================================================================== */
+function openInquiryModal(e) {
+    if (e) e.preventDefault();
+    const modal = document.getElementById('inquiryModal');
+    if (modal) modal.classList.add('active');
+}
+
+function closeInquiryModal() {
+    const modal = document.getElementById('inquiryModal');
+    if (modal) modal.classList.remove('active');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const modalSubmitBtn = document.getElementById('modalSubmitLink');
+    if (modalSubmitBtn) {
+        modalSubmitBtn.addEventListener('click', handleModalSubmit);
+    }
+});
+
+function handleModalSubmit() {
+    const name = document.getElementById('modal-name')?.value?.trim() || '';
+    const passport = document.getElementById('modal-passport')?.value?.trim() || '';
+    const email = document.getElementById('modal-email')?.value?.trim() || '';
+    const phone = document.getElementById('modal-phone')?.value?.trim() || '';
+
+    if (!name || !phone) {
+        ['modal-name', 'modal-phone'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el && !el.value.trim()) {
+                el.style.borderColor = '#ff6b6b';
+                setTimeout(() => { el.style.borderColor = ''; }, 2000);
+            }
+        });
+        return;
+    }
+
+    let msg = `Assalam o Alaikum, I'd like to submit an inquiry.%0A%0A`;
+    msg += `*Name:* ${encodeURIComponent(name)}%0A`;
+    if (passport) msg += `*Passport No:* ${encodeURIComponent(passport)}%0A`;
+    if (email) msg += `*Email:* ${encodeURIComponent(email)}%0A`;
+    msg += `*Contact No:* ${encodeURIComponent(phone)}%0A`;
+
+    window.open(`https://wa.me/923170427915?text=${msg}`, '_blank');
+    closeInquiryModal();
+}
