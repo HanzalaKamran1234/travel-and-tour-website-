@@ -69,13 +69,6 @@ a {
     transition: var(--transition-fast);
 }
 
-button, input, select, textarea {
-    font-family: inherit;
-    font-size: inherit;
-    color: inherit;
-    outline: none;
-}
-
 ul {
     list-style: none;
 }
@@ -222,103 +215,54 @@ h1, h2, h3, h4, h5, h6 {
 .card-badge.font-blue { background-color: var(--color-blue); color: var(--color-white); }
 
 /* ==========================================================================
-   BUTTONS
+   LUXURY TEXT LINKS (REPLACING BUTTONS)
    ========================================================================== */
-.btn {
+.text-link-luxury {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--color-navy);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    padding: 14px 28px;
-    border-radius: 40px;
-    font-size: 0.95rem;
-    font-weight: 700;
-    text-align: center;
+    gap: 8px;
+    padding: 6px 0;
     cursor: pointer;
     transition: var(--transition-smooth);
-    border: none;
-    position: relative;
-    overflow: hidden;
 }
 
-.btn-primary {
-    background: var(--gradient-gold-orange);
-    color: var(--color-navy);
-    box-shadow: var(--shadow-gold);
-}
-
-.btn-primary::after {
+.text-link-luxury::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: -50%;
-    width: 200%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
-    transform: skewX(-20deg);
+    bottom: 0;
+    left: 0;
+    width: 30%;
+    height: 2px;
+    background-color: var(--color-gold);
     transition: var(--transition-smooth);
-    opacity: 0;
 }
 
-.btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(245, 179, 0, 0.4);
+.text-link-luxury:hover {
+    color: var(--color-orange);
+    letter-spacing: 2.5px;
 }
 
-.btn-primary:hover::after {
-    left: 150%;
-    opacity: 1;
-    transition: 0.8s ease-in-out;
-}
-
-.btn-secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--color-white);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(5px);
-}
-
-.btn-secondary:hover {
-    background-color: var(--color-white);
-    color: var(--color-navy);
-    border-color: var(--color-white);
-    transform: translateY(-3px);
-}
-
-.btn-primary-outline {
-    background: transparent;
-    color: var(--color-navy);
-    border: 2px solid var(--color-navy);
-}
-
-.btn-primary-outline:hover {
-    background-color: var(--color-navy);
-    color: var(--color-white);
-    transform: translateY(-2px);
-}
-
-.btn-full {
+.text-link-luxury:hover::after {
     width: 100%;
+    background-color: var(--color-orange);
 }
 
-.btn-footer-wa {
-    background: #25D366;
+.footer-wa-detail-row .text-link-luxury {
+    color: var(--color-gold);
+}
+
+.footer-wa-detail-row .text-link-luxury::after {
+    background-color: var(--color-white);
+}
+
+.footer-wa-detail-row .text-link-luxury:hover {
     color: var(--color-white);
-    box-shadow: 0 6px 15px rgba(37, 211, 102, 0.25);
-    padding: 10px 20px;
-    font-size: 0.85rem;
-    gap: 8px;
-}
-
-.btn-footer-wa:hover {
-    background-color: #20ba59;
-    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4);
-    transform: translateY(-2px);
-}
-
-.wa-small-icon {
-    width: 18px;
-    height: 18px;
-    fill: currentColor;
 }
 
 /* ==========================================================================
@@ -466,11 +410,6 @@ h1, h2, h3, h4, h5, h6 {
     gap: 15px;
 }
 
-.btn-nav-cta {
-    padding: 10px 22px;
-    font-size: 0.85rem;
-}
-
 /* Hamburger Menu */
 .hamburger-menu {
     display: none;
@@ -605,12 +544,7 @@ h1, h2, h3, h4, h5, h6 {
     text-shadow: 0 1px 5px rgba(4, 27, 74, 0.4);
 }
 
-.slide-actions {
-    display: flex;
-    gap: 15px;
-}
-
-/* Slider buttons */
+/* Slider buttons (styled as interactive divs, no button elements) */
 .slider-btn {
     position: absolute;
     top: 50%;
@@ -728,56 +662,6 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-muted);
 }
 
-/* Service Preview Cards */
-.service-preview-card {
-    background-color: var(--bg-card);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--border-color);
-    transition: var(--transition-smooth);
-}
-
-.service-preview-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--border-gold);
-}
-
-.card-image-wrapper {
-    position: relative;
-    height: 230px;
-    overflow: hidden;
-}
-
-.card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: var(--transition-smooth);
-}
-
-.service-preview-card:hover .card-image {
-    transform: scale(1.08);
-}
-
-.card-body {
-    padding: 30px 25px;
-}
-
-.card-title-text {
-    font-size: 1.35rem;
-    font-weight: 800;
-    color: var(--color-navy);
-    margin-bottom: 12px;
-}
-
-.card-description-text {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    margin-bottom: 25px;
-}
-
 /* Statistics Counter */
 .absolute-decor-circle {
     position: absolute;
@@ -851,40 +735,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.95rem;
     font-weight: 700;
     color: var(--color-navy);
-}
-
-/* CTA Banner Bottom Home */
-.cta-banner-wrapper {
-    padding: 0 0 100px;
-    background-color: var(--bg-primary);
-}
-
-.cta-banner-container {
-    background: linear-gradient(135deg, var(--color-navy) 30%, var(--color-blue) 100%);
-    border-radius: 24px;
-    padding: 50px 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    box-shadow: var(--shadow-lg);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.cta-banner-content {
-    color: var(--color-white);
-    max-width: 600px;
-}
-
-.cta-banner-content h2 {
-    font-size: 2.25rem;
-    font-weight: 800;
-    margin-bottom: 10px;
-}
-
-.cta-banner-content p {
-    font-size: 1.05rem;
-    color: rgba(255, 255, 255, 0.85);
 }
 
 /* ==========================================================================
@@ -1203,7 +1053,6 @@ a.contact-detail-card:hover {
     color: var(--color-navy);
 }
 
-/* Contact Form Card */
 .glass-form-card {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
@@ -1221,45 +1070,6 @@ a.contact-detail-card:hover {
     padding-bottom: 12px;
 }
 
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-label {
-    display: block;
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: var(--color-navy);
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.form-control {
-    width: 100%;
-    padding: 12px 18px;
-    border-radius: 8px;
-    border: 1.5px solid rgba(4, 27, 74, 0.12);
-    background-color: rgba(255, 255, 255, 0.8);
-    color: var(--text-dark);
-    font-size: 0.95rem;
-    transition: var(--transition-fast);
-}
-
-.form-control:focus {
-    border-color: var(--color-gold);
-    background-color: var(--color-white);
-    box-shadow: 0 0 0 4px rgba(245, 179, 0, 0.12);
-}
-
-.form-control.uppercase {
-    text-transform: uppercase;
-}
-
-textarea.form-control {
-    resize: none;
-}
-
 /* Vector Map Placeholder */
 .map-vector-placeholder {
     height: 380px;
@@ -1272,7 +1082,6 @@ textarea.form-control {
     justify-content: center;
     box-shadow: var(--shadow-lg);
     border: 2px solid var(--color-gold);
-    /* Soft vector layout grid via background styling */
     background-image: 
         radial-gradient(rgba(245, 179, 0, 0.15) 1px, transparent 1px),
         linear-gradient(rgba(245, 179, 0, 0.05) 1px, transparent 1px),
@@ -1348,261 +1157,6 @@ textarea.form-control {
 .pin-lahore { top: 38%; left: 63%; }
 .pin-peshawar { top: 22%; left: 45%; }
 .pin-karachi { top: 80%; left: 28%; }
-
-/* ==========================================================================
-   APPLICATION MODAL SYSTEM
-   ========================================================================== */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(4, 27, 74, 0.6);
-    backdrop-filter: blur(8px);
-    z-index: 1000;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.modal-overlay.active {
-    display: flex;
-}
-
-.modal-card {
-    background-color: var(--bg-card);
-    width: 100%;
-    max-width: 600px;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    border: 1.5px solid var(--border-gold);
-}
-
-.animate-modal {
-    transform: scale(0.9);
-    opacity: 0;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
-}
-
-.modal-overlay.active .animate-modal {
-    transform: scale(1);
-    opacity: 1;
-}
-
-.modal-header {
-    background-color: var(--color-navy);
-    color: var(--color-white);
-    padding: 20px 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 2.5px solid var(--color-gold);
-}
-
-.modal-title {
-    font-size: 1.35rem;
-    margin-bottom: 0;
-}
-
-.modal-close {
-    font-size: 2rem;
-    background: transparent;
-    border: none;
-    color: rgba(255, 255, 255, 0.7);
-    cursor: pointer;
-    line-height: 1;
-    transition: var(--transition-fast);
-}
-
-.modal-close:hover {
-    color: var(--color-gold);
-}
-
-/* Steps */
-.modal-steps {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--bg-primary);
-    padding: 15px 30px;
-    border-bottom: 1px solid rgba(4, 27, 74, 0.05);
-}
-
-.step-indicator {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    opacity: 0.5;
-    transition: var(--transition-fast);
-}
-
-.step-indicator.active {
-    opacity: 1;
-}
-
-.step-num {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background-color: var(--color-navy);
-    color: var(--color-white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 0.85rem;
-}
-
-.step-indicator.active .step-num {
-    background-color: var(--color-gold);
-    color: var(--color-navy);
-}
-
-.step-label {
-    font-size: 0.85rem;
-    font-weight: 700;
-}
-
-.step-line {
-    width: 60px;
-    height: 2px;
-    background-color: rgba(4, 27, 74, 0.1);
-    margin: 0 15px;
-}
-
-.step-line.active {
-    background-color: var(--color-gold);
-}
-
-/* Modal Body & Step Panels */
-.modal-body {
-    padding: 30px;
-    max-height: 70vh;
-    overflow-y: auto;
-}
-
-.step-panel {
-    display: none;
-}
-
-.step-panel.active {
-    display: block;
-}
-
-.modal-footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(4, 27, 74, 0.05);
-}
-
-/* Step 2 Payment Layout */
-.payment-intro-text {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin-bottom: 20px;
-}
-
-.payment-methods-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.payment-card {
-    border: 2px solid rgba(4, 27, 74, 0.08);
-    border-radius: 12px;
-    padding: 16px 20px;
-    cursor: pointer;
-    position: relative;
-    transition: var(--transition-fast);
-    background-color: var(--color-white);
-}
-
-.payment-card:hover {
-    border-color: rgba(245, 179, 0, 0.5);
-    background-color: rgba(245, 179, 0, 0.02);
-}
-
-.payment-card.selected {
-    border-color: var(--color-gold);
-    background-color: rgba(245, 179, 0, 0.05);
-    box-shadow: 0 4px 15px rgba(245, 179, 0, 0.08);
-}
-
-.payment-logo-area {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-.method-badge {
-    font-size: 0.72rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    padding: 4px 8px;
-    border-radius: 4px;
-    letter-spacing: 0.5px;
-}
-
-.orange-badge { background-color: #E21B23; color: var(--color-white); }
-.green-badge { background-color: #39B54A; color: var(--color-white); }
-.blue-badge { background-color: var(--color-navy); color: var(--color-white); }
-
-.payment-title {
-    font-size: 1.05rem;
-    color: var(--color-navy);
-    margin-bottom: 6px;
-}
-
-.payment-details {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-}
-
-.payment-details p {
-    margin-bottom: 2px;
-}
-
-.payment-details p:last-child {
-    margin-bottom: 0;
-}
-
-.selection-indicator {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(4, 27, 74, 0.2);
-    border-radius: 50%;
-    transition: var(--transition-fast);
-}
-
-.payment-card.selected .selection-indicator {
-    border-color: var(--color-gold);
-    background-color: var(--color-gold);
-}
-
-.payment-card.selected .selection-indicator::after {
-    content: '';
-    position: absolute;
-    left: 6px;
-    top: 3px;
-    width: 5px;
-    height: 9px;
-    border: solid var(--color-navy);
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-}
 
 /* ==========================================================================
    FOOTER
@@ -1913,14 +1467,6 @@ textarea.form-control {
         font-size: 0.95rem;
     }
     
-    /* CTA Banner Home Page */
-    .cta-banner-container {
-        flex-direction: column;
-        text-align: center;
-        padding: 40px 30px;
-        gap: 24px;
-    }
-    
     /* Services View Detail grids */
     .service-detail-grid {
         grid-template-columns: 1fr;
@@ -1958,13 +1504,6 @@ textarea.form-control {
     .slide-title {
         font-size: 1.65rem;
     }
-    .slide-actions {
-        flex-direction: column;
-        gap: 10px;
-    }
-    .slide-actions .btn {
-        width: 100%;
-    }
     .slider-btn {
         display: none; /* Hide arrows on small mobile, rely on swipe/dots */
     }
@@ -1976,9 +1515,6 @@ textarea.form-control {
     .brand-subtitle {
         font-size: 0.65rem;
     }
-    .btn-nav-cta {
-        display: none; /* Hide button in header, user can apply from slider/about/menu */
-    }
     
     /* About intro visual scale */
     .about-brand-seal {
@@ -1988,25 +1524,6 @@ textarea.form-control {
         left: 40px;
         width: 180px;
         height: 180px;
-    }
-    
-    /* Payment selector */
-    .payment-methods-grid {
-        gap: 10px;
-    }
-    .payment-card {
-        padding: 12px 15px;
-    }
-    .payment-title {
-        font-size: 0.95rem;
-    }
-    
-    /* Modal spacing */
-    .modal-body {
-        padding: 20px;
-    }
-    .modal-steps {
-        padding: 10px 15px;
     }
     
     /* Footer */
