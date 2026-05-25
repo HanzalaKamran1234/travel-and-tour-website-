@@ -3,15 +3,14 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize components
     initSPARouter();
     initStickyHeader();
     initHeroSlider();
     initMobileMenu();
     initScrollAnimations();
     initStatsCounter();
-    
-    // Auto focus hash link on reload if any
+    initTestimonialsSlider();
+
     const hash = window.location.hash.substring(1);
     if (hash && ['home', 'about', 'services', 'contact'].includes(hash)) {
         switchPage(hash);
@@ -19,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   1. CLIENT SIDE SPA ROUTER
+   1. SPA ROUTER
    ========================================================================== */
 function initSPARouter() {
     window.addEventListener('hashchange', () => {
@@ -34,8 +33,6 @@ function navigateTo(event, pageId) {
     event.preventDefault();
     window.location.hash = pageId;
     switchPage(pageId);
-    
-    // Close mobile menu if active
     const navMenu = document.getElementById('navMenu');
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     if (navMenu.classList.contains('active')) {
@@ -47,8 +44,7 @@ function navigateTo(event, pageId) {
 function switchPage(pageId) {
     const pages = document.querySelectorAll('.page-view');
     const navLinks = document.querySelectorAll('.nav-link');
-    
-    // Smooth transition
+
     pages.forEach(page => {
         if (page.classList.contains('active')) {
             page.style.opacity = '0';
@@ -56,18 +52,13 @@ function switchPage(pageId) {
             setTimeout(() => {
                 page.classList.remove('active');
                 displayNewPage(pageId);
-            }, 300); // Wait for transition
+            }, 300);
         }
     });
 
-    // Update active nav links
     navLinks.forEach(link => {
         const href = link.getAttribute('href').substring(1);
-        if (href === pageId) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
+        link.classList.toggle('active', href === pageId);
     });
 }
 
@@ -75,39 +66,26 @@ function displayNewPage(pageId) {
     const newPage = document.getElementById(pageId);
     if (newPage) {
         newPage.classList.add('active');
-        // Force reflow
         newPage.offsetHeight;
         newPage.style.opacity = '1';
         newPage.style.transform = 'translateY(0)';
-        
-        // Scroll to top cleanly
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-
-        // Trigger animations for the new view
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         triggerScrollAnimations();
     }
 }
 
 /* ==========================================================================
-   2. STICKY HEADER SCROLL LISTENER (TRIGGERS INSTANTLY)
+   2. STICKY HEADER
    ========================================================================== */
 function initStickyHeader() {
     const header = document.querySelector('.main-header');
-    
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 5) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
+        header.classList.toggle('scrolled', window.scrollY > 5);
     });
 }
 
 /* ==========================================================================
-   3. HERO IMAGE SLIDER
+   3. PREMIUM HERO SLIDER — Ken Burns + Counter + Progress Bar
    ========================================================================== */
 function initHeroSlider() {
     const slider = document.getElementById('heroSlider');
@@ -117,10 +95,14 @@ function initHeroSlider() {
     const prevBtn = document.getElementById('sliderPrev');
     const nextBtn = document.getElementById('sliderNext');
     const dotsContainer = document.getElementById('sliderDots');
+    const slideCurrentNum = document.getElementById('slideCurrentNum');
+    const progressBar = document.getElementById('sliderProgressBar');
+
     let currentSlide = 0;
     let slideInterval;
-    
-    // Clear old dots and recreate
+    const SLIDE_DURATION = 5000;
+
+    // Build dots dynamically
     dotsContainer.innerHTML = '';
     slides.forEach((_, idx) => {
         const dot = document.createElement('span');
@@ -128,57 +110,77 @@ function initHeroSlider() {
         dot.addEventListener('click', () => goToSlide(idx));
         dotsContainer.appendChild(dot);
     });
-    
     const dots = dotsContainer.querySelectorAll('.dot');
-    
+
     function updateSlides() {
         slides.forEach((slide, idx) => {
-            if (idx === currentSlide) {
-                slide.classList.add('active');
-                dots[idx].classList.add('active');
-            } else {
-                slide.classList.remove('active');
-                dots[idx].classList.remove('active');
-            }
+            const isActive = idx === currentSlide;
+            slide.classList.toggle('active', isActive);
+            if (dots[idx]) dots[idx].classList.toggle('active', isActive);
         });
+
+        // Update slide counter
+        if (slideCurrentNum) {
+            slideCurrentNum.textContent = String(currentSlide + 1).padStart(2, '0');
+        }
+
+        // Restart progress bar
+        if (progressBar) {
+            progressBar.classList.remove('animating');
+            progressBar.style.width = '0%';
+            void progressBar.offsetWidth; // force reflow
+            progressBar.classList.add('animating');
+            progressBar.style.width = '100%';
+        }
     }
-    
+
     function nextSlide() {
         currentSlide = (currentSlide + 1) % slides.length;
         updateSlides();
     }
-    
+
     function prevSlide() {
         currentSlide = (currentSlide - 1 + slides.length) % slides.length;
         updateSlides();
     }
-    
+
     function goToSlide(idx) {
         currentSlide = idx;
         updateSlides();
         resetTimer();
     }
-    
+
     function startTimer() {
-        slideInterval = setInterval(nextSlide, 5000); // 5 sec interval
+        slideInterval = setInterval(nextSlide, SLIDE_DURATION);
     }
-    
+
     function resetTimer() {
         clearInterval(slideInterval);
         startTimer();
     }
-    
-    if (prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-            prevSlide();
+
+    if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetTimer(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetTimer(); });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') { prevSlide(); resetTimer(); }
+        if (e.key === 'ArrowRight') { nextSlide(); resetTimer(); }
+    });
+
+    // Touch/swipe support
+    let touchStartX = 0;
+    slider.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+    slider.addEventListener('touchend', e => {
+        const diff = touchStartX - e.changedTouches[0].screenX;
+        if (Math.abs(diff) > 50) {
+            diff > 0 ? nextSlide() : prevSlide();
             resetTimer();
-        });
-        nextBtn.addEventListener('click', () => {
-            nextSlide();
-            resetTimer();
-        });
-    }
-    
+        }
+    });
+
+    // Init first slide
+    updateSlides();
     startTimer();
 }
 
@@ -188,7 +190,6 @@ function initHeroSlider() {
 function initMobileMenu() {
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const navMenu = document.getElementById('navMenu');
-    
     if (hamburgerBtn && navMenu) {
         hamburgerBtn.addEventListener('click', () => {
             hamburgerBtn.classList.toggle('active');
@@ -198,7 +199,7 @@ function initMobileMenu() {
 }
 
 /* ==========================================================================
-   5. INTERSECTION OBSERVER SCROLL ANIMATIONS
+   5. SCROLL ANIMATIONS
    ========================================================================== */
 let scrollObserver;
 
@@ -207,35 +208,28 @@ function initScrollAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('appear');
-                scrollObserver.unobserve(entry.target); // Only animate once
+                scrollObserver.unobserve(entry.target);
             }
         });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
-    
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
     triggerScrollAnimations();
 }
 
 function triggerScrollAnimations() {
-    const animElements = document.querySelectorAll('.animate-on-scroll');
-    animElements.forEach(el => {
-        if (!el.classList.contains('appear')) {
-            scrollObserver.observe(el);
-        }
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        if (!el.classList.contains('appear')) scrollObserver.observe(el);
     });
 }
 
 /* ==========================================================================
-   6. STATISTICS COUNTER ENGINE
+   6. STATISTICS COUNTER
    ========================================================================== */
 function initStatsCounter() {
     const statsSection = document.querySelector('.bg-navy.relative');
     if (!statsSection) return;
 
     let hasCounted = false;
-    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting && !hasCounted) {
@@ -244,37 +238,86 @@ function initStatsCounter() {
             }
         });
     }, { threshold: 0.3 });
-    
+
     observer.observe(statsSection);
 }
 
 function startCounting() {
     const counters = document.querySelectorAll('.stat-number');
-    const duration = 2000; // 2 seconds counting animation
+    const duration = 2000;
 
     counters.forEach(counter => {
         const target = +counter.getAttribute('data-target');
-        const start = 0;
         const startTime = performance.now();
 
         function updateCounter(currentTime) {
-            const elapsedTime = currentTime - startTime;
-            const progress = Math.min(elapsedTime / duration, 1);
-            
-            // Ease out quad formula
-            const easedProgress = progress * (2 - progress);
-            const currentValue = Math.floor(easedProgress * (target - start) + start);
-            
-            // Format number with commas
-            counter.textContent = currentValue.toLocaleString() + '+';
-            
-            if (progress < 1) {
-                requestAnimationFrame(updateCounter);
-            } else {
-                counter.textContent = target.toLocaleString() + '+';
-            }
+            const progress = Math.min((currentTime - startTime) / duration, 1);
+            const eased = progress * (2 - progress);
+            counter.textContent = Math.floor(eased * target).toLocaleString() + '+';
+            if (progress < 1) requestAnimationFrame(updateCounter);
+            else counter.textContent = target.toLocaleString() + '+';
         }
 
         requestAnimationFrame(updateCounter);
     });
+}
+
+/* ==========================================================================
+   7. TESTIMONIALS SLIDER
+   ========================================================================== */
+function initTestimonialsSlider() {
+    const slider = document.getElementById('testimonialSlider');
+    if (!slider) return;
+
+    const cards = slider.querySelectorAll('.testimonial-card');
+    const dotsContainer = document.getElementById('testimonialDots');
+    const prevBtn = document.getElementById('testPrev');
+    const nextBtn = document.getElementById('testNext');
+
+    let current = 0;
+    let autoInterval;
+
+    // Build dots
+    if (dotsContainer) {
+        dotsContainer.innerHTML = '';
+        cards.forEach((_, idx) => {
+            const dot = document.createElement('span');
+            dot.className = `t-dot ${idx === 0 ? 'active' : ''}`;
+            dot.addEventListener('click', () => goTo(idx));
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    function updateDots() {
+        if (!dotsContainer) return;
+        dotsContainer.querySelectorAll('.t-dot').forEach((d, i) => {
+            d.classList.toggle('active', i === current);
+        });
+    }
+
+    function goTo(idx) {
+        current = (idx + cards.length) % cards.length;
+        slider.style.transform = `translateX(-${current * 100}%)`;
+        updateDots();
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => { prev(); resetAuto(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { next(); resetAuto(); });
+
+    // Touch swipe
+    let tStartX = 0;
+    slider.addEventListener('touchstart', e => { tStartX = e.changedTouches[0].screenX; }, { passive: true });
+    slider.addEventListener('touchend', e => {
+        const diff = tStartX - e.changedTouches[0].screenX;
+        if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); resetAuto(); }
+    });
+
+    function startAuto() { autoInterval = setInterval(next, 6000); }
+    function resetAuto() { clearInterval(autoInterval); startAuto(); }
+
+    goTo(0);
+    startAuto();
 }
