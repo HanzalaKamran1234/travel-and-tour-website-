@@ -1437,6 +1437,12 @@ a.contact-detail-card:hover {
     .nav-link:hover, .nav-link.active {
         color: var(--color-gold);
     }
+    .main-header.scrolled .nav-link {
+        color: rgba(255, 255, 255, 0.85); /* Override color on mobile scroll so it stays white */
+    }
+    .main-header.scrolled .nav-link:hover, .main-header.scrolled .nav-link.active {
+        color: var(--color-gold); /* Override active/hover color on mobile scroll so it stays gold */
+    }
     
     .hamburger-menu.active .bar:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
