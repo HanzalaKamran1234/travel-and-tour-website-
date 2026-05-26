@@ -529,7 +529,7 @@
                                         </ul>
                                     </div>
                                     
-                                    <a href="javascript:void(0)" onclick="openInquiryModal(event)" class="text-link-luxury">Fill Inquiry Form &rarr;</a>
+                                    <a href="javascript:void(0)" onclick="openInquiryModal(event, 'Tahseer')" class="text-link-luxury">Fill Inquiry Form &rarr;</a>
                                 </div>
                             </div>
                         </div>
@@ -556,7 +556,7 @@
                                         </ul>
                                     </div>
                                     
-                                    <a href="javascript:void(0)" onclick="openInquiryModal(event)" class="text-link-luxury">Fill Inquiry Form &rarr;</a>
+                                    <a href="javascript:void(0)" onclick="openInquiryModal(event, 'Gamca')" class="text-link-luxury">Fill Inquiry Form &rarr;</a>
                                 </div>
                             </div>
                         </div>
@@ -583,7 +583,7 @@
                                         </ul>
                                     </div>
                                     
-                                    <a href="javascript:void(0)" onclick="openInquiryModal(event)" class="text-link-luxury">Fill Inquiry Form &rarr;</a>
+                                    <a href="javascript:void(0)" onclick="openInquiryModal(event, 'Navttc')" class="text-link-luxury">Fill Inquiry Form &rarr;</a>
                                 </div>
                             </div>
                         </div>
@@ -796,7 +796,7 @@
                         <input type="email" id="modal-email" class="hc-input" placeholder="e.g. ali@example.com" autocomplete="email">
                     </div>
                     
-                    <div class="hc-form-group">
+                    <div class="hc-form-group" id="tahseer-fields" style="display:none;">
                         <label class="hc-label">Passport Image (JPG, PNG, JPEG)</label>
                         <div class="file-upload-zone" id="file-upload-zone" onclick="document.getElementById('modal-passport-file').click()" ondragover="handleDragOver(event)" ondrop="handleDrop(event)" ondragleave="handleDragLeave(event)">
                             <div class="upload-placeholder" id="upload-placeholder">
@@ -806,6 +806,43 @@
                             <img id="image-preview" class="image-preview" src="" alt="Passport Preview" style="display:none;">
                             <input type="file" id="modal-passport-file" accept="image/jpeg, image/png, image/jpg" style="display:none;" onchange="handleFileSelect(event)">
                         </div>
+                        
+                        <label class="hc-label" for="tahseer-country" style="margin-top: 15px;">Country of Destination</label>
+                        <input type="text" id="tahseer-country" class="hc-input" placeholder="Enter country">
+                        
+                        <label class="hc-label" for="tahseer-marital" style="margin-top: 15px;">Marital Status</label>
+                        <select id="tahseer-marital" class="hc-input">
+                            <option value="">Select...</option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                        </select>
+                        
+                        <label class="hc-label" for="tahseer-visa" style="margin-top: 15px;">Visa Categories</label>
+                        <select id="tahseer-visa" class="hc-input">
+                            <option value="">Select...</option>
+                            <option value="Tourist Visa">Tourist Visa</option>
+                            <option value="Business Visa">Business Visa</option>
+                            <option value="Work Visa">Work Visa</option>
+                            <option value="Student Visa">Student Visa</option>
+                            <option value="Family Visit Visa">Family Visit Visa</option>
+                            <option value="Transit Visa">Transit Visa</option>
+                        </select>
+                        
+                        <label class="hc-label" for="tahseer-occupation" style="margin-top: 15px;">Last Occupation</label>
+                        <input type="text" id="tahseer-occupation" class="hc-input" placeholder="Enter last occupation">
+                    </div>
+                    
+                    <div class="hc-form-group" id="gamca-fields" style="display:none;">
+                        <label class="hc-label" for="gamca-city">City Of Medical Checkup</label>
+                        <input type="text" id="gamca-city" class="hc-input" placeholder="Enter city">
+                    </div>
+                    
+                    <div class="hc-form-group" id="navttc-fields" style="display:none;">
+                        <label class="hc-label" for="navttc-trade">Trade</label>
+                        <input type="text" id="navttc-trade" class="hc-input" placeholder="Enter trade">
+                        
+                        <label class="hc-label" for="navttc-city" style="margin-top: 15px;">City of Test</label>
+                        <input type="text" id="navttc-city" class="hc-input" placeholder="Enter city">
                     </div>
                     
                     <div class="hc-submit-link" onclick="goToStep2()" role="button" tabindex="0" style="justify-content: center; width: 100%;">

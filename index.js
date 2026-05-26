@@ -360,12 +360,28 @@ function handleContactSubmit() {
 /* ==========================================================================
    9. INQUIRY MODAL (MULTI-STEP)
    ========================================================================== */
-function openInquiryModal(e) {
+let currentServiceType = '';
+
+function openInquiryModal(e, serviceType = '') {
     if (e) e.preventDefault();
+    currentServiceType = serviceType;
     const modal = document.getElementById('inquiryModal');
     if (modal) {
         modal.classList.add('active');
         goToStep1(); // Always open on step 1
+        
+        // Hide all specific fields first
+        document.getElementById('tahseer-fields').style.display = 'none';
+        document.getElementById('gamca-fields').style.display = 'none';
+        document.getElementById('navttc-fields').style.display = 'none';
+        
+        if (serviceType === 'Tahseer') {
+            document.getElementById('tahseer-fields').style.display = 'block';
+        } else if (serviceType === 'Gamca') {
+            document.getElementById('gamca-fields').style.display = 'block';
+        } else if (serviceType === 'Navttc') {
+            document.getElementById('navttc-fields').style.display = 'block';
+        }
     }
 }
 
@@ -465,15 +481,41 @@ function handleModalSubmit() {
         }
     }
 
-    let msg = `Assalam o Alaikum, I'd like to submit an inquiry.%0A%0A`;
+    let msg = `Assalam o Alaikum, I'd like to submit an inquiry`;
+    if (currentServiceType) {
+        msg += ` for ${currentServiceType} Appointment.%0A%0A`;
+    } else {
+        msg += `.%0A%0A`;
+    }
     msg += `*Name:* ${encodeURIComponent(name)}%0A`;
     msg += `*Email:* ${encodeURIComponent(email)}%0A`;
     msg += `*Contact No:* ${encodeURIComponent(phone)}%0A`;
-    msg += `*Payment Method:* ${encodeURIComponent(paymentMethod)}%0A%0A`;
     
-    if (uploadedPassportFile) {
-        msg += `*(Note: I have my Passport Image ready to attach in this chat)*%0A`;
+    if (currentServiceType === 'Tahseer') {
+        const country = document.getElementById('tahseer-country')?.value?.trim() || '';
+        const marital = document.getElementById('tahseer-marital')?.value?.trim() || '';
+        const visa = document.getElementById('tahseer-visa')?.value?.trim() || '';
+        const occ = document.getElementById('tahseer-occupation')?.value?.trim() || '';
+        
+        if(country) msg += `*Country of Destination:* ${encodeURIComponent(country)}%0A`;
+        if(marital) msg += `*Marital Status:* ${encodeURIComponent(marital)}%0A`;
+        if(visa) msg += `*Visa Category:* ${encodeURIComponent(visa)}%0A`;
+        if(occ) msg += `*Last Occupation:* ${encodeURIComponent(occ)}%0A`;
+        
+        if (uploadedPassportFile) {
+            msg += `*(Note: I have my Passport Image ready to attach in this chat)*%0A`;
+        }
+    } else if (currentServiceType === 'Gamca') {
+        const city = document.getElementById('gamca-city')?.value?.trim() || '';
+        if(city) msg += `*City of Medical Checkup:* ${encodeURIComponent(city)}%0A`;
+    } else if (currentServiceType === 'Navttc') {
+        const trade = document.getElementById('navttc-trade')?.value?.trim() || '';
+        const city = document.getElementById('navttc-city')?.value?.trim() || '';
+        if(trade) msg += `*Trade:* ${encodeURIComponent(trade)}%0A`;
+        if(city) msg += `*City of Test:* ${encodeURIComponent(city)}%0A`;
     }
+    
+    msg += `*Payment Method:* ${encodeURIComponent(paymentMethod)}%0A%0A`;
 
     window.open(`https://wa.me/923170427915?text=${msg}`, '_blank');
     closeInquiryModal();
