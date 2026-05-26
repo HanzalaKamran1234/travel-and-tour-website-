@@ -2024,37 +2024,55 @@ a.contact-detail-card:hover {
     flex-direction: column;
     gap: 12px;
 }
-.payment-card {
-    cursor: pointer;
-}
-.payment-card input {
-    display: none;
-}
-.payment-card-inner {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 16px 20px;
+.manual-payment-card {
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
     transition: all 0.3s ease;
 }
-.payment-card:hover .payment-card-inner {
+.manual-payment-card:hover {
     background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
-.payment-card input:checked + .payment-card-inner {
-    border-color: var(--color-gold);
-    background: rgba(245, 179, 0, 0.1);
-    box-shadow: 0 5px 15px rgba(245, 179, 0, 0.15);
+.mpc-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding-bottom: 10px;
 }
-.payment-icon {
-    font-size: 1.5rem;
+.mpc-icon {
+    font-size: 1.3rem;
 }
-.payment-name {
-    color: #fff;
-    font-weight: 600;
+.mpc-title {
+    color: var(--color-gold);
+    font-weight: 700;
     font-size: 1.05rem;
+    letter-spacing: 0.5px;
+}
+.mpc-details {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+.mpc-details small {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.mpc-number {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 1px;
 }
 
 .btn-back {

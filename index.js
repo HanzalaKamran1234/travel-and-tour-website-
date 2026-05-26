@@ -392,8 +392,10 @@ function closeInquiryModal() {
 
 function goToStep1() {
     document.getElementById('modal-step-2').classList.remove('active');
+    document.getElementById('modal-step-3')?.classList.remove('active');
     document.getElementById('modal-step-1').classList.add('active');
     document.getElementById('step2-indicator').classList.remove('active');
+    document.getElementById('step3-indicator')?.classList.remove('active');
     document.getElementById('step1-indicator').classList.add('active');
 }
 
@@ -414,9 +416,20 @@ function goToStep2() {
     }
 
     document.getElementById('modal-step-1').classList.remove('active');
+    document.getElementById('modal-step-3')?.classList.remove('active');
     document.getElementById('modal-step-2').classList.add('active');
     document.getElementById('step1-indicator').classList.remove('active');
+    document.getElementById('step3-indicator')?.classList.remove('active');
     document.getElementById('step2-indicator').classList.add('active');
+}
+
+function goToStep3() {
+    document.getElementById('modal-step-1').classList.remove('active');
+    document.getElementById('modal-step-2').classList.remove('active');
+    document.getElementById('modal-step-3').classList.add('active');
+    document.getElementById('step1-indicator').classList.remove('active');
+    document.getElementById('step2-indicator').classList.remove('active');
+    document.getElementById('step3-indicator').classList.add('active');
 }
 
 /* File Upload Logic */
@@ -459,6 +472,46 @@ function processFile(file) {
     reader.readAsDataURL(file);
 }
 
+/* Payment Proof Upload Logic */
+let uploadedProofFile = null;
+
+function handleProofDragOver(e) {
+    e.preventDefault();
+    document.getElementById('proof-upload-zone').classList.add('dragover');
+}
+function handleProofDragLeave(e) {
+    e.preventDefault();
+    document.getElementById('proof-upload-zone').classList.remove('dragover');
+}
+function handleProofDrop(e) {
+    e.preventDefault();
+    document.getElementById('proof-upload-zone').classList.remove('dragover');
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        processProofFile(e.dataTransfer.files[0]);
+    }
+}
+function handleProofSelect(e) {
+    if (e.target.files && e.target.files.length > 0) {
+        processProofFile(e.target.files[0]);
+    }
+}
+function processProofFile(file) {
+    const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+    if (!validTypes.includes(file.type)) {
+        alert("Please upload a valid image file (JPG, PNG).");
+        return;
+    }
+    uploadedProofFile = file;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        document.getElementById('proof-placeholder').style.display = 'none';
+        const imgPreview = document.getElementById('proof-preview');
+        imgPreview.src = e.target.result;
+        imgPreview.style.display = 'block';
+    }
+    reader.readAsDataURL(file);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const modalSubmitBtn = document.getElementById('modalSubmitLink');
     if (modalSubmitBtn) {
@@ -471,15 +524,9 @@ function handleModalSubmit() {
     const phone = document.getElementById('modal-phone')?.value?.trim() || '';
     const email = document.getElementById('modal-email')?.value?.trim() || '';
     
-    // Get selected payment method
-    let paymentMethod = 'Not selected';
-    const paymentRadios = document.getElementsByName('payment-method');
-    for (let i = 0; i < paymentRadios.length; i++) {
-        if (paymentRadios[i].checked) {
-            paymentMethod = paymentRadios[i].value;
-            break;
-        }
-    }
+    const senderName = document.getElementById('modal-sender-name')?.value?.trim() || '';
+    const senderNumber = document.getElementById('modal-sender-number')?.value?.trim() || '';
+    const paymentMethod = document.getElementById('modal-payment-method')?.value || '';
 
     let msg = `Assalam o Alaikum, I'd like to submit an inquiry`;
     if (currentServiceType) {
@@ -515,7 +562,13 @@ function handleModalSubmit() {
         if(city) msg += `*City of Test:* ${encodeURIComponent(city)}%0A`;
     }
     
-    msg += `*Payment Method:* ${encodeURIComponent(paymentMethod)}%0A%0A`;
+    msg += `*Payment Method:* ${encodeURIComponent(paymentMethod)}%0A`;
+    if (senderName) msg += `*Sender Name:* ${encodeURIComponent(senderName)}%0A`;
+    if (senderNumber) msg += `*Sender Number:* ${encodeURIComponent(senderNumber)}%0A`;
+
+    if (uploadedProofFile) {
+        msg += `*(Note: I have my Payment Proof ready to attach in this chat)*%0A`;
+    }
 
     window.open(`https://wa.me/923170427915?text=${msg}`, '_blank');
     closeInquiryModal();
