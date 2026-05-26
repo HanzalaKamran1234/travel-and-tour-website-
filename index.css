@@ -1809,15 +1809,33 @@ a.contact-detail-card:hover {
 }
 .hc-select {
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='rgba(255,255,255,0.4)' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23F5B300' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 16px center;
+    background-position: right 18px center;
     background-size: 16px;
     cursor: pointer;
+    padding-right: 45px;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+.hc-select:focus {
+    border-color: var(--color-gold);
+    background-color: rgba(4, 27, 74, 0.95);
+    box-shadow: 0 0 0 3px rgba(245, 179, 0, 0.15);
+    color: #fff;
 }
 .hc-select option {
-    background: #041B4A;
-    color: #fff;
+    background-color: #0A1128;
+    color: #ffffff;
+    font-size: 0.95rem;
+    padding: 15px;
+}
+.hc-select option:checked {
+    background-color: rgba(245, 179, 0, 0.15);
+    color: var(--color-gold);
+    font-weight: 600;
 }
 .hc-textarea {
     resize: vertical;
