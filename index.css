@@ -1878,15 +1878,18 @@ a.contact-detail-card:hover {
 }
 .modal-content {
     background: linear-gradient(145deg, rgba(16, 44, 102, 0.95), rgba(4, 27, 74, 0.98));
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 35px;
-    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 25px 30px;
+    border-radius: 20px;
     width: 90%;
-    max-width: 450px;
+    max-width: 480px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
     position: relative;
     transform: translateY(20px) scale(0.95);
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
 }
 .modal-overlay.active .modal-content {
     transform: translateY(0) scale(1);
@@ -1905,6 +1908,8 @@ a.contact-detail-card:hover {
 .modal-content .form-title {
     color: #fff;
     font-family: var(--font-display);
+    flex-shrink: 0;
+    margin-bottom: 15px !important;
 }
 
 /* Multi-Step Modal Styles */
@@ -1912,7 +1917,8 @@ a.contact-detail-card:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    flex-shrink: 0;
 }
 .modal-stepper .step {
     font-size: 0.9rem;
@@ -1933,9 +1939,43 @@ a.contact-detail-card:hover {
 .modal-step {
     display: none;
     animation: fadeInStep 0.4s ease forwards;
+    overflow-y: auto;
+    flex-grow: 1;
+    padding-right: 8px;
 }
+.modal-step::-webkit-scrollbar {
+    width: 6px;
+}
+.modal-step::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.02);
+    border-radius: 4px;
+}
+.modal-step::-webkit-scrollbar-thumb {
+    background: rgba(245, 179, 0, 0.4);
+    border-radius: 4px;
+}
+.modal-step::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold);
+}
+
 .modal-step.active {
     display: block;
+}
+
+.modal-step .hc-form-inner {
+    padding: 0 4px 10px 4px;
+}
+
+.modal-step .hc-form-group {
+    margin-bottom: 14px;
+}
+
+.modal-step .hc-input {
+    padding: 10px 14px;
+}
+
+.modal-step .hc-label {
+    margin-bottom: 5px;
 }
 
 @keyframes fadeInStep {
@@ -1947,7 +1987,7 @@ a.contact-detail-card:hover {
 .file-upload-zone {
     border: 2px dashed rgba(255,255,255,0.2);
     border-radius: 12px;
-    padding: 30px 20px;
+    padding: 20px 15px;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -1961,20 +2001,20 @@ a.contact-detail-card:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     color: rgba(255,255,255,0.6);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
 }
 .upload-icon {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
     fill: var(--color-gold);
 }
 .image-preview {
     max-width: 100%;
-    max-height: 150px;
+    max-height: 120px;
     border-radius: 8px;
-    object-fit: cover;
+    object-fit: contain;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
