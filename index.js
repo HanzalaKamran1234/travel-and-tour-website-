@@ -512,6 +512,84 @@ function processProofFile(file) {
     reader.readAsDataURL(file);
 }
 
+/* NAVTTC Passport Image Logic */
+let navttcPassportFile = null;
+function handleNavttcPassportDragOver(e) {
+    e.preventDefault();
+    document.getElementById('navttc-passport-upload-zone').classList.add('dragover');
+}
+function handleNavttcPassportDragLeave(e) {
+    e.preventDefault();
+    document.getElementById('navttc-passport-upload-zone').classList.remove('dragover');
+}
+function handleNavttcPassportDrop(e) {
+    e.preventDefault();
+    document.getElementById('navttc-passport-upload-zone').classList.remove('dragover');
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        processNavttcPassport(e.dataTransfer.files[0]);
+    }
+}
+function handleNavttcPassportSelect(e) {
+    if (e.target.files && e.target.files.length > 0) {
+        processNavttcPassport(e.target.files[0]);
+    }
+}
+function processNavttcPassport(file) {
+    const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+    if (!validTypes.includes(file.type)) {
+        alert("Please upload a valid image file (JPG, PNG).");
+        return;
+    }
+    navttcPassportFile = file;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        document.getElementById('navttc-passport-placeholder').style.display = 'none';
+        const imgPreview = document.getElementById('navttc-passport-preview');
+        imgPreview.src = e.target.result;
+        imgPreview.style.display = 'block';
+    }
+    reader.readAsDataURL(file);
+}
+
+/* NAVTTC Passport Size Picture Logic */
+let navttcPictureFile = null;
+function handleNavttcPictureDragOver(e) {
+    e.preventDefault();
+    document.getElementById('navttc-picture-upload-zone').classList.add('dragover');
+}
+function handleNavttcPictureDragLeave(e) {
+    e.preventDefault();
+    document.getElementById('navttc-picture-upload-zone').classList.remove('dragover');
+}
+function handleNavttcPictureDrop(e) {
+    e.preventDefault();
+    document.getElementById('navttc-picture-upload-zone').classList.remove('dragover');
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        processNavttcPicture(e.dataTransfer.files[0]);
+    }
+}
+function handleNavttcPictureSelect(e) {
+    if (e.target.files && e.target.files.length > 0) {
+        processNavttcPicture(e.target.files[0]);
+    }
+}
+function processNavttcPicture(file) {
+    const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+    if (!validTypes.includes(file.type)) {
+        alert("Please upload a valid image file (JPG, PNG).");
+        return;
+    }
+    navttcPictureFile = file;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        document.getElementById('navttc-picture-placeholder').style.display = 'none';
+        const imgPreview = document.getElementById('navttc-picture-preview');
+        imgPreview.src = e.target.result;
+        imgPreview.style.display = 'block';
+    }
+    reader.readAsDataURL(file);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const modalSubmitBtn = document.getElementById('modalSubmitLink');
     if (modalSubmitBtn) {
@@ -560,6 +638,8 @@ function handleModalSubmit() {
         const city = document.getElementById('navttc-city')?.value?.trim() || '';
         if(trade) msg += `*Trade:* ${encodeURIComponent(trade)}%0A`;
         if(city) msg += `*City of Test:* ${encodeURIComponent(city)}%0A`;
+        if(navttcPassportFile) msg += `*(Note: I have my Passport Image ready to attach in this chat)*%0A`;
+        if(navttcPictureFile) msg += `*(Note: I have my Passport Size Picture ready to attach in this chat)*%0A`;
     }
     
     msg += `*Payment Method:* ${encodeURIComponent(paymentMethod)}%0A`;
