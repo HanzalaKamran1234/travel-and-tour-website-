@@ -1807,6 +1807,25 @@ a.contact-detail-card:hover {
     border-color: var(--color-gold);
     background: rgba(245,179,0,0.04);
 }
+.hc-input.valid {
+    border-color: #2ecc71 !important;
+    background-color: rgba(46, 204, 113, 0.05) !important;
+}
+.hc-input.invalid {
+    border-color: #e74c3c !important;
+    background-color: rgba(231, 76, 60, 0.05) !important;
+}
+.hc-error-text {
+    color: #e74c3c;
+    font-size: 0.75rem;
+    margin-top: 6px;
+    display: none;
+    animation: fadeInStep 0.3s ease;
+    font-weight: 500;
+}
+.hc-input.invalid + .hc-error-text {
+    display: block;
+}
 .hc-select {
     appearance: none;
     -webkit-appearance: none;

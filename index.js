@@ -400,19 +400,19 @@ function goToStep1() {
 }
 
 function goToStep2() {
-    const name = document.getElementById('modal-name')?.value?.trim() || '';
-    const phone = document.getElementById('modal-phone')?.value?.trim() || '';
-    const email = document.getElementById('modal-email')?.value?.trim() || '';
+    const nameInput = document.getElementById('modal-name');
+    const phoneInput = document.getElementById('modal-phone');
+    const emailInput = document.getElementById('modal-email');
 
-    if (!name || !phone || !email) {
-        ['modal-name', 'modal-phone', 'modal-email'].forEach(id => {
-            const el = document.getElementById(id);
-            if (el && !el.value.trim()) {
-                el.style.borderColor = '#ff6b6b';
-                setTimeout(() => { el.style.borderColor = ''; }, 2000);
-            }
-        });
-        return; // Stop if required fields are missing
+    const isNameValid = validateInput(nameInput, 'name');
+    const isPhoneValid = validateInput(phoneInput, 'phone');
+    const isEmailValid = validateInput(emailInput, 'email');
+
+    if (!isNameValid || !isPhoneValid || !isEmailValid) {
+        if (!nameInput.value.trim()) nameInput.classList.add('invalid');
+        if (!phoneInput.value.trim()) phoneInput.classList.add('invalid');
+        if (!emailInput.value.trim()) emailInput.classList.add('invalid');
+        return; // Stop if fields are invalid
     }
 
     document.getElementById('modal-step-1').classList.remove('active');
@@ -590,7 +590,46 @@ function processNavttcPicture(file) {
     reader.readAsDataURL(file);
 }
 
+/* Input Validation Logic */
+function validateInput(input, type) {
+    if (!input) return false;
+    let isValid = false;
+    let val = input.value.trim();
+    
+    if (!val) {
+        input.classList.remove('valid', 'invalid');
+        return false;
+    }
+
+    if (type === 'name') {
+        isValid = /^[a-zA-Z\s]+$/.test(val);
+    } else if (type === 'phone') {
+        isValid = /^\+?[\d\s\-]+$/.test(val) && val.replace(/\D/g, '').length >= 10;
+    } else if (type === 'email') {
+        isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+    }
+
+    if (isValid) {
+        input.classList.remove('invalid');
+        input.classList.add('valid');
+    } else {
+        input.classList.remove('valid');
+        input.classList.add('invalid');
+    }
+    return isValid;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Attach real-time validation listeners
+    const nameInputs = document.querySelectorAll('#modal-name, #modal-sender-name');
+    nameInputs.forEach(el => el.addEventListener('input', () => validateInput(el, 'name')));
+
+    const phoneInputs = document.querySelectorAll('#modal-phone, #modal-sender-number');
+    phoneInputs.forEach(el => el.addEventListener('input', () => validateInput(el, 'phone')));
+
+    const emailInputs = document.querySelectorAll('#modal-email');
+    emailInputs.forEach(el => el.addEventListener('input', () => validateInput(el, 'email')));
+
     const modalSubmitBtn = document.getElementById('modalSubmitLink');
     if (modalSubmitBtn) {
         modalSubmitBtn.addEventListener('click', handleModalSubmit);
@@ -598,6 +637,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function handleModalSubmit() {
+    // Validate Step 3 fields
+    const senderNameInput = document.getElementById('modal-sender-name');
+    const senderPhoneInput = document.getElementById('modal-sender-number');
+    
+    const isSenderNameValid = validateInput(senderNameInput, 'name');
+    const isSenderPhoneValid = validateInput(senderPhoneInput, 'phone');
+
+    if (!isSenderNameValid || !isSenderPhoneValid) {
+        if (!senderNameInput.value.trim()) senderNameInput.classList.add('invalid');
+        if (!senderPhoneInput.value.trim()) senderPhoneInput.classList.add('invalid');
+        return;
+    }
+
     const name = document.getElementById('modal-name')?.value?.trim() || '';
     const phone = document.getElementById('modal-phone')?.value?.trim() || '';
     const email = document.getElementById('modal-email')?.value?.trim() || '';
